@@ -369,3 +369,38 @@ alert(heisengberg.name)
 alert(heisengberg.statement)
 
 
+// we can access multiple object properties with this trick called-
+// destructuring
+let object69 = {
+    msg: "Hello",
+    time: "afternoon",
+    food: "pizza"
+}
+
+const {msg, time, food} = object69; // we can take the same name as object's property and make them variable like this to destructure the procedure.
+console.log(msg, time, food) // an easy way to take out the properties from an object
+
+// JSON(JavaScript object notation) is a fromat to store datas and share with multiple devises and also every other programming language understands JSON
+// For its simple, lighweighted, text-based data interchangable format it is used to store and transport data
+// commonly between webservers and we b applications.
+
+// JSON(JavaScript object notation) is an object itself. its syntax is similer to object.
+// JSON does not allow functions. JS object and JSON are different in other ways.
+
+// making an object into a JSON
+let jsonObj = {
+    name: "Ripon",
+    age: 21,
+    home: "Kolkata",
+    study: "BCA",
+    phNo: "9897382312",
+    hasJob: false,
+    salary(sal){
+        console.log(`his salary is ${this.sal}`)
+    }
+}
+
+Json = JSON.stringify(jsonObj) // see here n this same json of an object has no function/method in it.
+console.log(Json)
+
+console.log(JSON.parse(Json)) // using JSON.Parse() we can make the JSON into an object again.
