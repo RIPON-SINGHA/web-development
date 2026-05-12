@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULATOR</title>
+</head>
+<body>
+    <p>
+    <button onclick=" numbers += '1'; console.log(numbers)"> 1 </button>
+    <button onclick=" numbers += '2'; console.log(numbers)"> 2 </button>
+    <button onclick=" numbers += '3'; console.log(numbers)"> 3 </button>
+    <button onclick=" numbers += ' + '; console.log(numbers)"> + </button>
+    </p>
+
+    <p>
+    <button onclick=" numbers += '4'; console.log(numbers)"> 4 </button>
+    <button onclick=" numbers += '5'; console.log(numbers)"> 5 </button>
+    <button onclick=" numbers += '6'; console.log(numbers)"> 6 </button>
+    <button onclick=" numbers += ' - '; console.log(numbers)"> - </button>
+    </p>
+    <button onclick=" numbers += '7'; console.log(numbers)"> 7 </button>
+    <button onclick=" numbers += '8'; console.log(numbers)"> 8 </button>
+    <button onclick=" numbers += '9'; console.log(numbers)"> 9 </button>
+    <button onclick=" numbers += ' * '; console.log(numbers)"> * </button>
+
+    <p>
+    <button onclick=" numbers += '0'; console.log(numbers)"> 0 </button>
+    <button onclick=" numbers += ' / '; console.log(numbers)"> / </button>
+    <button onclick=" numbers += ' . '; console.log(numbers)"> . </button>
+    <button onclick=" answer = eval(numbers); console.log(answer)"> = </button>
+    </p>
+
+    <button onclick=" numbers = ''; console.log(numbers)"> clear </button>
+
+    <script>
+        let numbers = ''
+        let answer = ''
+    </script>
+</body>
+</html>
