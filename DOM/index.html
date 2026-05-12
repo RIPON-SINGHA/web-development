@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+    <h4>...Youtube Subscribe Button...</h4>
+    <button class = "yt-sub-btn" 
+    onclick="subscribe()"> Subscribe </button>
+
+    <script>
+        function subscribe() {
+            const subBtn = document.querySelector(".yt-sub-btn");
+            if (subBtn.innerText === "Subscribe") {
+                subBtn.innerText = "Subscribed";
+            } else {
+                subBtn.innerText = "Subscribe";
+            }
+        }
+    </script>
+</body>
+
+</html>
