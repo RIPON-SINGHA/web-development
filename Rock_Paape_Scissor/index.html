@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissor</title>
+</head>
+<body>
+    <button onclick="
+        compMove;
+        randomNumber = Math.floor(Math.random() * max);
+        if (randomNumber === 0){
+            compMove = 'rock';
+        } else if (randomNumber === 1) {
+            compMove = 'paper';
+        } else {
+            compMove = 'scissor'
+        }
+        const msg = `You picked ROCK and computer picked ${compMove.toUpperCase()}.`;
+        if (compMove === 'rock'){
+            tie += 1;
+            alert(`${msg} TIE,  win: ${win}, lose: ${lose}, tie: ${tie}`);
+        } else if (compMove === 'paper'){
+            lose += 1;
+            alert(`${msg}, LOSE,  win: ${win}, lose: ${lose}, tie: ${tie}`);
+        } else {
+            win += 1;
+            alert(`${msg}, WIN, win: ${win}, lose: ${lose}, tie: ${tie}`);
+        }">
+        
+        Rock
+    </button>
+
+        <button onclick=" compMove;
+        randomNumber = Math.floor(Math.random() * max);
+        if (randomNumber === 0) {
+            compMove = 'rock';
+        } else if (randomNumber === 1) {
+            compMove = 'paper';
+        } else {
+            compMove = 'scissor';
+        }
+        
+        msg = `You picked PAPER and computer picked ${compMove.toUpperCase()}.`
+        
+        if (compMove === 'rock') {
+            win += 1;
+            alert(`${msg} WON,  win: ${win}, lose: ${lose}, tie: ${tie}`);
+        } else if (compMove === 'paper') {
+            tie += 1
+            alert(`${msg} TIE,  win: ${win}, lose: ${lose}, tie: ${tie}`);
+        } else {
+            lose += 1
+            alert(`${msg} LOSE,  win: ${win}, lose: ${lose}, tie: ${tie}`);
+        }">
+    
+        Paper
+    </button>
+
+    <button onclick="
+        compMove;
+        randomNumber = Math.floor(Math.random() * max);
+        if (randomNumber === 0) {
+            compMove = 'rock';
+        } else if (randomNumber === 1) {
+            compMove = 'paper';
+        } else {
+            compMove = 'scissor';
+        }
+        
+        msg = `You picked SCISSOR and computer picked ${compMove.toUpperCase()}.`
+        if (compMove === 'rock') {
+            lose += 1
+            alert(`${msg} LOSE,  win: ${win}, lose: ${lose}, tie: ${tie}`);
+        } else if (compMove === 'paper') {
+            win += 1
+            alert(`${msg} WIN,  win: ${win}, lose: ${lose}, tie: ${tie}`);
+        } else {
+            tie += 1
+            alert(`${msg} TIE,  win: ${win}, lose: ${lose}, tie: ${tie}`);
+        }">
+        
+        Scissor
+    </button>
+    <script>
+        let compMove;
+        let max = 3;
+        let randomNumber;
+        let win = 0;
+        let lose = 0;
+        let tie = 0;
+    </script>
+</body>
+</html>
