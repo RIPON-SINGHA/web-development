@@ -6,14 +6,14 @@
     <title>ROCK PAPER SCISSOR</title>
 </head>
 <body>
+    <h3>Rock Paper Scissor</h3>
     <button onclick="playGame('rock')"> Rock </button>
     <button onclick="playGame('paper')"> Paper </button>
     <button onclick="playGame('scissor')"> Scissor </button>
-    <button onclick="resetBtn(gameResultElem, gameMovesElem)"> Reset Game </button>
     <p id = "game-result"></p>
     <p id = "game-moves"></p>
     <p id = "game-score"> Win: 0, Lose: 0, Tie: 0 </p>
-
+    <button onclick="resetBtn(gameResultElem, gameMovesElem)"> Reset Game </button>
     <script>
         let gameResultElem = document.querySelector("#game-result")
         let gameMovesElem = document.querySelector("#game-moves")
