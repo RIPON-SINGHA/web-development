@@ -1,0 +1,14 @@
+.game-options {
+    height: auto;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+.stone, .paper, .scissor, .reset {
+    height: 50px;
+    width: 70px;
+    border: 1px black solid;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
