@@ -1,15 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TODO APP</title>
-</head>
-<body>
-    <input type="text" id="todoInput" placeholder="Add a task">
-    <button id="addBtn">Add</button>
-    <ul id="todoList"></ul>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="appContainer">
+      <h1>TO DO List</h1>
+      <div class="inputContainer">
+        <input type="text" id="todoInput" placeholder="Add a task" />
+        <button id="addBtn">Add Task</button>
+      </div>
+      <div class="todoContainer">
+        <ul id="todoList">
+          <li class="todoItem">
+            <span class="todoText"> jogging </span>
+            <div class="actionBtn">
+              <button class="toggleBtn">Not done</button>
+              <button class="deleteBtn">Delete</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
 
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
