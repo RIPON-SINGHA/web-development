@@ -1,0 +1,115 @@
+body {
+    min-height: 100vh;
+    margin: 0px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+}
+
+.appContainer {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.09);
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+.inputContainer {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#todoInput {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+#addBtn {
+    align-self: flex-start;
+    padding: 5px 16px;
+    border: 1px solid #333;
+    background: #e7e3e3;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.todoContainer {
+    width: 95%;
+
+}
+
+ #todoList {
+    list-style: none;
+    padding: 0;
+    margin: 15;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+}
+
+
+.todoItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-radius: 4px;
+    background-color: #F2F2F2;
+}
+
+
+ .todoText {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.actionBtn {
+    display: flex;
+    gap: 20px;
+}
+
+.toggleBtn, .deleteBtn {
+    min-width: 120px;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 5px;
+    background-color: #5146ee;
+    color: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.doneToggle {
+    min-width: 120px;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+    background-color: #16a34a ;
+}
+
+.doneTodoText {
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+}
