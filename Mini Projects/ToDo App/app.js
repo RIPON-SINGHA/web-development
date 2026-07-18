@@ -21,12 +21,8 @@ function renderTodo() {
         const li = document.createElement('li');
         const deleteBtn = document.createElement('button')
         const completeToggleBtn = document.createElement('button')
-        //const todoText = document.createElement('span')
         const actionBtn = document.createElement('div')
         const editTodoBtn = document.createElement('button')
-        //const editTodoInput = document.createElement('input')
-        // todoText.textContent = todo.task + " ";
-        // todoText.className = 'todoText'
         li.className = 'todoItem'
         actionBtn.className = 'actionBtn'
         deleteBtn.textContent = 'Delete Task'
@@ -35,13 +31,9 @@ function renderTodo() {
         completeToggleBtn.textContent = todo.completed ? "DONE" : "NOT DONE"
         completeToggleBtn.className = todo.completed ? 'doneToggle' : 'toggleBtn'
         completeToggleBtn.id = todo.id
-        // todoText.className = todo.completed ? 'doneTodoText' : 'todoText'
         editTodoBtn.className = 'editBtn'
         editTodoBtn.id = todo.id
         editTodoBtn.textContent = 'Edit'
-        // editTodoInput.type = 'text'
-        // editTodoInput.className = 'editTodoInput'
-        // editTodoInput.placeholder = 'Edit Todo here'
         actionBtn.appendChild(editTodoBtn)
         actionBtn.appendChild(deleteBtn)
         actionBtn.appendChild(completeToggleBtn)
