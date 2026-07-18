@@ -1,6 +1,7 @@
 const todoInput = document.querySelector("#todoInput");
 const addBtn = document.querySelector("#addBtn");
 const todoList = document.querySelector("#todoList");
+let editTodoId = null
 
 let savedTodos = JSON.parse(localStorage.getItem("savedTodos"))
 
@@ -20,10 +21,12 @@ function renderTodo() {
         const li = document.createElement('li');
         const deleteBtn = document.createElement('button')
         const completeToggleBtn = document.createElement('button')
-        const todoText = document.createElement('span')
+        //const todoText = document.createElement('span')
         const actionBtn = document.createElement('div')
-        todoText.textContent = todo.task + " ";
-        todoText.className = 'todoText'
+        const editTodoBtn = document.createElement('button')
+        //const editTodoInput = document.createElement('input')
+        // todoText.textContent = todo.task + " ";
+        // todoText.className = 'todoText'
         li.className = 'todoItem'
         actionBtn.className = 'actionBtn'
         deleteBtn.textContent = 'Delete Task'
@@ -32,10 +35,32 @@ function renderTodo() {
         completeToggleBtn.textContent = todo.completed ? "DONE" : "NOT DONE"
         completeToggleBtn.className = todo.completed ? 'doneToggle' : 'toggleBtn'
         completeToggleBtn.id = todo.id
-        todoText.className = todo.completed ? 'doneTodoText' : 'todoText'
+        // todoText.className = todo.completed ? 'doneTodoText' : 'todoText'
+        editTodoBtn.className = 'editBtn'
+        editTodoBtn.id = todo.id
+        editTodoBtn.textContent = 'Edit'
+        // editTodoInput.type = 'text'
+        // editTodoInput.className = 'editTodoInput'
+        // editTodoInput.placeholder = 'Edit Todo here'
+        actionBtn.appendChild(editTodoBtn)
         actionBtn.appendChild(deleteBtn)
         actionBtn.appendChild(completeToggleBtn)
-        li.appendChild(todoText)
+        if (editTodoId === todo.id) {
+            const editTodoInput = document.createElement('input')
+            editTodoInput.type = 'text'
+            editTodoInput.className = 'editTodoInput'
+            editTodoInput.value = todo.task
+            editTodoInput.focus()
+            li.appendChild(editTodoInput)
+            editTodoBtn.textContent = 'Save'
+            editTodoBtn.className = 'saveChangeBtn'
+        } else {
+            const todoText = document.createElement('span')
+            todoText.textContent = todo.task + " ";
+            todoText.className = 'todoText'
+            todoText.className = todo.completed ? 'doneTodoText' : 'todoText'
+            li.appendChild(todoText)
+        }
         li.appendChild(actionBtn)
         todoList.appendChild(li);
     });
@@ -50,6 +75,7 @@ function addTodo(text) {
 addBtn.addEventListener("click", ()=> {
     addTodo(todoInput.value);
     todoInput.value = '';
+    disableAddBtn()
 });
 
 function deleteTodo(btnId) {
@@ -68,6 +94,12 @@ function toggleCompleteBtn(btnId) {
     renderTodo()
 }
 
+function disableAddBtn() {
+    addBtn.disabled = todoInput.value.trim().length === 0
+}
+
+todoInput.addEventListener("input", disableAddBtn)
+
 
 todoList.addEventListener("click", (e)=> {
     if (e.target.classList.contains("deleteBtn")) {
@@ -81,10 +113,53 @@ todoList.addEventListener("click", (e)=> {
     if (e.target.classList.contains("doneToggle")) {
         toggleCompleteBtn(e.target.id)
     }
+
+    if (e.target.classList.contains("editBtn")) {
+        editTodoId = Number(e.target.id)
+        renderTodo()
+
+        
+        const input = todoList.querySelector(".editTodoInput")
+        if (input) {
+            input.focus()
+        }
+    }
+
+    if (e.target.classList.contains("saveChangeBtn")) {
+        
+        executeSaveChange(e.target)
+    }
 })
+
+todoList.addEventListener("keydown", (e) => {
+    if (e.key === 'Enter' && e.target.classList.contains("editTodoInput")) {
+
+        const li = e.target.closest('li')
+        const saveBtn = li.querySelector(".saveChangeBtn")
+        
+        if (saveBtn) {
+            executeSaveChange(saveBtn)
+        }
+    }
+})
+
+function executeSaveChange(saveBtn) {
+    const todo = todoTasks.find(item => item.id === Number(saveBtn.id))
+
+    const li = saveBtn.closest('li')
+    const input = li.querySelector(".editTodoInput")
+
+    if (todo && input) {
+        todo.task = input.value.trim()
+        editTodoId = null
+        saveTodo()
+        renderTodo()
+    }
+}
 
 function saveTodo() {
     localStorage.setItem("savedTodos", JSON.stringify(todoTasks))
 }
 
 renderTodo();
+disableAddBtn();
