@@ -135,6 +135,15 @@ todoList.addEventListener("keydown", (e) => {
     }
 })
 
+todoInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        addTodo(todoInput.value)
+        todoInput.value = ""
+        disableAddBtn()
+    }
+})
+
+
 function executeSaveChange(saveBtn) {
     const todo = todoTasks.find(item => item.id === Number(saveBtn.id))
 
