@@ -1,0 +1,29 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: sans-serif;
+}
+
+.clock-container {
+    width: 100%;
+    max-width: 30%;
+    height: 23%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5.5rem;
+    background-color: #C3C2B7;   
+    border-radius: 20px;
+    box-shadow: 4px 4px 3px 0px ;
+}
+
+.AM-PM {
+    font-size: 3.5rem;
+    padding-top: 20px;
+    padding-left: 10px
+    
+}
