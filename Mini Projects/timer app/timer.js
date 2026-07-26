@@ -87,3 +87,5 @@ startBtn.addEventListener("click", () => {startTimer(totalDuration)})
 pauseBtn.addEventListener("click", pauseTimer)
 resumeBtn.addEventListener("click", resumeTimer)
 resetBtn.addEventListener("click", resetTimer)
+
+
