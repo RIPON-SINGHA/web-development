@@ -53,3 +53,34 @@ h1 {
     box-shadow: inset 0px 0px 4px;
     cursor: pointer;
 }
+
+.timer-input {
+    width: 100%;
+    max-width: 35%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    bottom: 50px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+#hour, #minute, #second {
+    width: 150px;
+    height: 20px;
+    border-radius: 5px;
+    border: none;
+    border: 1px solid #C3C2B7;
+}
+
+.start-timer {
+    height: 30px;
+    width: 100px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: inset 0px 0px 4px;
+}
