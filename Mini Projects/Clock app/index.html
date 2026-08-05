@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="main-nav">
+        <button id ="clockBtn" class="nav-btn" data-target="clock-section">Clock</button>
+        <button id="stopwatchBtn" class="nav-btn" data-target="stopwatch-section">Stopwatch</button>
+        <button id="timerBtn" class="nav-btn" data-target="timer-section">Timer</button>
+    </nav>
+
+    <section id="clock-section" class="page-section">
+        <div class="clock-container">
+            <div class="hour-time">12</div>
+            <span>:</span>
+            <div class="minute-time">12</div>
+            <span>:</span>
+            <div class="second-time">12</div>
+            <div class="AM-PM">AM</div>
+        </div>
+    </section>
+
+    <section id="stopwatch-section" class="page-section hidden">
+        <h1>Stop Watch</h1>
+        <div class="clock-container">
+            <div class="hour-time">00</div>
+            <span>:</span>
+            <div class="minute-time">00</div>
+            <span>:</span>
+            <div class="second-time">00</div>
+        </div>
+        <div class="controller-panel">
+            <button class="startBtn">Start</button>
+            <button class="pauseBtn">Pause</button>
+            <button class="resumeBtn">Resume</button>
+            <button class="resetBtn">Reset</button>
+        </div>
+    </section>
+
+    <section id="timer-section" class="page-section hidden">
+        <h1>Timer</h1>
+        <div class="timer-input-container">
+            <input type="number" id="hour" placeholder="Add hours" class="time-input">
+            <input type="number" id="minute" placeholder="Add minutes" class="time-input">
+            <input type="number" id="second" placeholder="Add Seconds" class="time-input">
+            <button class="start-timer">Set Timer</button>
+        </div>
+        <div class="clock-container">
+            <div class="hour-time">00</div>
+            <span>:</span>
+            <div class="minute-time">00</div>
+            <span>:</span>
+            <div class="second-time">00</div>
+        </div>
+        <div class="controller-panel">
+            <button class="startBtn">Start</button>
+            <button class="pauseBtn">Pause</button>
+            <button class="resumeBtn">Resume</button>
+            <button class="resetBtn">Reset</button>
+        </div>
+    </section>
+
+    <script src="date.js"></script>
+    <script src="stopwatch.js"></script>
+    <script src="timer.js"></script>
+    <script src="nav.js"></script>
+</body>
+</html>
