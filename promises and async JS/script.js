@@ -45,3 +45,23 @@
 // //so the executor eventually moves the promise to one of these states: 
 // promise = {
 //     state: "fullfilled",
+//     result: value
+// }
+
+// promise = {
+//     state: "rejected",
+//     result: error
+// }
+
+
+// when the work completes without an error, we call resolve
+let promise1 = new Promise(function(resolve, reject){
+    setTimeout(()=> resolve("done"), 1000)
+})
+
+
+// when a work is completed with an error, we call new reject
+let promise2 = new Promise(function(resolve, reject) {
+    setTimeout(() => reject(new Error("whoops, error!")), 1000)
+})
+
