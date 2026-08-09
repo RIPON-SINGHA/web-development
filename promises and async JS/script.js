@@ -62,6 +62,68 @@ let promise1 = new Promise(function(resolve, reject){
 
 // when a work is completed with an error, we call new reject
 let promise2 = new Promise(function(resolve, reject) {
-    setTimeout(() => reject(new Error("whoops, error!")), 1000)
+    setTimeout(() => reject(new Error("whoops")), 1000)
 })
+
+
+//showing the value or the error based on the function above
+async function isError() {
+    try {
+        let answer = await promise2;
+    } catch(error) {
+        console.log("it seems there's an error occured! " + error.message)
+    }
+}
+
+isError()
+
+
+// Another example of resolve and reject of a promise.
+
+// resolve with .then
+let myPromise = new Promise(function (resolve, reject) {
+    setTimeout(() => {
+        resolve("promise is resolved")
+    }, 3000)
+})
+
+myPromise.then((result) => console.log(result))
+
+
+// resolve with async/await
+let myPromise1 = new Promise(function (resolve, reject) {
+    setTimeout(() => {
+        resolve("promise is resolved")
+    }, 3000)
+})
+
+async function showData() {
+    let data = await myPromise1
+    console.log(data)
+}
+
+
+// Reject with .catch
+let myPromise2 = new Promise(function(resolve, reject) {
+    setTimeout(()=> {
+        reject(new Error("data is corrupted"))
+    }, 3000)
+})
+
+myPromise2.then((result) => console.log(result)) // we can also not add this line cause we know this promise always returns reject.
+            .catch((error) => console.log(error.message))
+
+
+// Reject with async/await
+async function iserror() {
+    try{
+        let data = await myPromise2
+        console.log(data)
+    } catch (error) { // this error can be any kind of error.
+        console.log(error.message) 
+    }
+}
+// here error can be server error which has be be manually handled which we detect by (response.ok === true). it also could be no network kind of error.
+// also can be .json() error or data convertion error.
+
 
