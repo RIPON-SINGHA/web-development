@@ -1,57 +1,60 @@
-// src = "/promises and async JS/app.js"
+// basic callback works using scipts which i didn't knwo about
+src = "/promises and async JS/app.js"
+
+// adding new script into html file using existing js script
+function loadScript(src) {
+    let script = document.createElement("script")
+    script.src = src
+    document.body.append(script)
+}
+
+// on load run the script and append it to body
+function loadScript(src, callback) {
+  let script = document.createElement('script');
+  script.src = src;
+
+  script.onload = () => callback(script);
+
+  document.body.append(script);
+}
 
 
+ //on load run the script and append it to head html tag
+function loadScript(src, callback) {
+  let script = document.createElement('script');
+  script.src = src;
+  script.onload = () => callback(script);
+  document.head.append(script);
+}
 
-// // function loadScript(src) {
-// //     let script = document.createElement("script")
-// //     script.src = src
-// //     document.body.append(script)
-// // }
+loadScript(src, script => {
+  alert(`Cool, the script ${script.src} is loaded`);
+  alert( _ );
+});
 
-// // function loadScript(src, callback) {
-// //   let script = document.createElement('script');
-// //   script.src = src;
+// Promise:
 
-// //   script.onload = () => callback(script);
+let promise = new promise(function(resolve, reject){ // this is the syntax of simple general promise
+    // do something
+}) 
 
-// //   document.body.append(script);
-// // }
+// new promise is a constructor to make a promise object and it has an executor
+// An executor has two states resolve and reject. where resolve runs when the exwcutor obtain it's result, 
+// and reject runs when the executor does not obtain any result but error
+// An executor runs automatically to perform a job, when it finishes the attemp it calls either resolve or reject based on the result.
+// a promise object has these internal properties: 
+//state — initially "pending", then changes to either "fulfilled" when resolve is called or "rejected" when reject is called.
+//result — initially undefined, then changes to value when resolve(value) is called or error when reject(error) is called.
+//so the executor eventually moves the promise to one of these states: 
+promise = {
+    state: "fullfilled",
+    result: value
+}
 
-// function loadScript(src, callback) {
-//   let script = document.createElement('script');
-//   script.src = src;
-//   script.onload = () => callback(script);
-//   document.head.append(script);
-// }
-
-// loadScript(src, script => {
-//   alert(`Cool, the script ${script.src} is loaded`);
-//   alert( _ );
-// });
-
-// // Promise:
-
-// let promise = new promise(function(resolve, reject){ // this is the syntax of simple general promise
-//     // do something
-// }) 
-
-// // new promise is a constructor to make a promise object and it has an executor
-// // An executor has two states resolve and reject. where resolve runs when the exwcutor obtain it's result, 
-// // and reject runs when the executor does not obtain any result but error
-// // An executor runs automatically to perform a job, when it finishes the attemp it calls either resolve or reject based on the result.
-// // a promise object has these internal properties: 
-// //state — initially "pending", then changes to either "fulfilled" when resolve is called or "rejected" when reject is called.
-// //result — initially undefined, then changes to value when resolve(value) is called or error when reject(error) is called.
-// //so the executor eventually moves the promise to one of these states: 
-// promise = {
-//     state: "fullfilled",
-//     result: value
-// }
-
-// promise = {
-//     state: "rejected",
-//     result: error
-// }
+promise = {
+    state: "rejected",
+    result: error
+}
 
 
 // when the work completes without an error, we call resolve
