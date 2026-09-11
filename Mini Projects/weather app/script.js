@@ -1,6 +1,3 @@
-// lat = 0
-// lon = 0
-
 async function getLocation() {
     try {
         const response = await fetch("https://api.openweathermap.org/geo/1.0/direct?q=new york,&limit=1&appid=c4fd1a280e73e01f43a4629ddf94a1ef")
