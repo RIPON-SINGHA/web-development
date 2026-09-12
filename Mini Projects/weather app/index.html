@@ -3,9 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
+    <title>weather app</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="script.js"></script>
+    <div class="input_container">
+        <input type="text" class="city_input" placeholder="Enter a city name" autocomplete="off">
+        <button class="fetch_data">Get Weather</button>
+    </div>
+
+    <div class="city_name"></div>
+
+    <div class="data_container">
+        <div class="data_box temp"><h2>Temp</h2> <p class="temp_data">00</p> </div>
+        <div class="data_box humidity"><h2>Humidity</h2> <p class="humidity_data">00</p> </div>
+        <div class="data_box wind"><h2>Wind</h2> <p class="wind_data">00 m/s</p> </div>
+        <div class="data_box weather"><h2>Weather</h2> <p class="weather_data">No data</p> </div>
+    </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
