@@ -1,0 +1,50 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+    font-family: sans-serif;
+}
+
+.city_input {
+    height: 30px;
+    width: 250px;
+    border-radius: 6px; 
+}
+
+.fetch_data {
+    height: 30px;
+    margin-left: 20px;
+    font-weight: 700;
+}
+
+.city_name {
+    font-size: 2rem;
+}
+
+.data_container {
+    display: flex;
+    gap: 30px;
+}
+
+.data_box {
+    height: 120px;
+    width: 150px;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    margin: 0px;
+}
+
+p {
+    font-size: 1.2rem;
+}
