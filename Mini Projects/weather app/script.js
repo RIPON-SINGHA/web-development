@@ -85,7 +85,6 @@ function updateVisual() {
         weatherBox.textContent = `${weather}`
     })
 
-
 }
 
 fetchWeatherBtn.addEventListener('click', updateVisual)
