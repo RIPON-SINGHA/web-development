@@ -41,7 +41,8 @@ body {
  .main_weather_card {
     height: 250px;
     width: 100%;
-    border: 1px solid black
+    border: 1px solid black;
+    border-radius: 10px;
  }
 
  .location_place {
@@ -53,6 +54,7 @@ body {
     margin-left: 30px;
     font-size: 1.7rem;
     padding-top: 10px;
+    font-weight: 500;
  }
 
  .your_location_span {
