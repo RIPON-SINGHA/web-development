@@ -141,6 +141,7 @@ body {
  .fetch_weather_data {
     width: 25%;
     height: 90%;
+    cursor: pointer;
  }
 
  .searched_city_title {
@@ -157,4 +158,55 @@ body {
     padding: 15px;
     height: 90px;
  }
+
+.searched_place_time_other_weather_data p {
+   margin: 0px;
+}
+.place_name {
+   font-size: 1.2rem;
+   font-weight: 550;
+}
+
+.show_country_time {
+   font-size: .8rem;
+}
+
+.show_humidity_wind {   
+   padding-top: 10px;
+   font-size: .8rem;
+   font-weight: 550;
+}
+
+.searched_place_time_other_weather_data {
+   flex: 1
+}
+.searched_weather {
+   display: flex;
+}
+
+.searched_city_temp {
+   height: 100%;
+   width: 25%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   font-size: 1.9rem;
+   font-weight: 550;
+}
+
+.searched_city_temp p {
+   font-size: .9rem;
+   font-weight: 400;
+   margin: 0px;
+   padding-left: 36px;
+}
+
+.close_btn {
+   height: 100%;
+   display: flex;
+   align-items: center;
+      cursor: pointer;
+   font-size: 1.2rem;
+}
 
