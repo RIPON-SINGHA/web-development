@@ -5,13 +5,16 @@ const currentDateEl = document.querySelector(".show_date")
 const currentMonthEl = document.querySelector(".show_date_month")
 const currentTimeEL = document.querySelector(".show_time")
 const dayNightIndicator = document.querySelector(".day_night_indication")
-const currentTimezome = document.querySelector(".show_timezone")
+const currentTimezone = document.querySelector(".show_timezone")
 
 const currentPlaceTemp = document.querySelector(".main_city_current_temp")
 const currentWeatherDescription = document.querySelector(".weather_description")
 
 const currentWeatherHumidityLevel = document.querySelector(".humidity_level")
 const currentWeatherWindSpeed = document.querySelector(".wind_level")
+
+const fetchWeatherDataBtn = document.querySelector(".fetch_weather_data")
+const userSearchInput = document.querySelector(".city_input")
 
 function getUserLocationPosition() {
     return new Promise((resolve, reject) => { 
@@ -38,14 +41,16 @@ async function getWeatherData(lat, lon) {
             throw new Error (`Error: server couldn't load data || ${weatherResponse.status}`)
         }
 
-        const weaterData = await weatherResponse.json()
+        const weatherData = await weatherResponse.json()
 
-        const currentTemp = weaterData.main.temp
-        const currentHumidity = weaterData.main.humidity
-        const currentWindSpeed = weaterData.wind.speed
-        const currentWeatherDescription = weaterData.weather[0].description
+        const currentTemp = weatherData.main.temp
+        const currentHumidity = weatherData.main.humidity
+        const currentWindSpeed = weatherData.wind.speed
+        const currentWeatherDescription = weatherData.weather[0].description
+        const weathershortDescription = weatherData.weather[0].main
+        const currentUserTimezone = weatherData.sys.country
 
-        return [currentTemp, currentHumidity, currentWindSpeed, currentWeatherDescription]
+        return [currentTemp, currentHumidity, currentWindSpeed, currentWeatherDescription, weathershortDescription, currentUserTimezone]
 
     } catch (error) {
         throw error
@@ -70,102 +75,103 @@ async function getUserLocationName(lat, lon) {
     }
 }
 
-async function showData() {
-    const [weatherData, locationName, lat, lon] = await getUserCoordinates()
-    console.log(weatherData)
-    console.log(locationName)
-    console.log(lat)
-    console.log(lon)
-}
 
-showData()
-
-
-async function updateCurrentLocationWeatherUi() {
-    const [weatherData, locationName] = await getUserCoordinates()
-
+async function updateCurrentLocationWeatherUi(weatherData, locationName) {
+    // const [weatherData, locationName] = await getUserCoordinates()
     currentLocationName.textContent = locationName
-    currentPlaceTemp.textContent = weatherData[0] + "°C"
+    currentPlaceTemp.textContent = weatherData[0].toFixed(1) + "°C"
     currentWeatherDescription.textContent = weatherData[3]
     currentWeatherHumidityLevel.textContent = weatherData[1] + "%"
-    currentWeatherWindSpeed.textContent = weatherData[2] + "km/h"
+    currentWeatherWindSpeed.textContent = (weatherData[2]*3.6).toFixed(1) + "km/h"
 }
 
-function updateCurrentLocationDay() {
+function updateCurrentLocationDayTime(weatherData) {
     let currTime = new Date()
-    let day = currTime.getDay()
-    let month = currTime.getMonth()
+    let weekDays = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"]
+    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    
+    const currentTimehours = String(currTime.getHours()).padStart(2, '0');
+    const currentTimeMinutes = String(currTime.getMinutes()).padStart(2, '0');
 
-    switch (day) {
-        case 0:
-            currentDayEl.textContent = "Sun"
-            break;
-        case 1:
-            currentDayEl.textContent = "Mon"
-            break;
-        case 2:
-            currentDayEl.textContent = "Tue"
-            break;
-        case 3:
-            currentDayEl.textContent = "Wed"
-            break;
-        case 4:
-            currentDayEl.textContent = "Thur"
-            break;
-        case 5:
-            currentDayEl.textContent = "Fri"
-            break;
-        case 6:
-            currentDayEl.textContent = "Sat"
-            break;
-        default:
-            break;
-    }
-
+    currentTimehours >= 12 ? dayNightIndicator.textContent = "PM" : dayNightIndicator.textContent = "AM"
+    let currentDay = weekDays[currTime.getDay()]
+    currentDayEl.textContent = currentDay
+    let currentMonth = months[currTime.getMonth()]
     currentDateEl.textContent = currTime.getDate()
+    currentMonthEl.textContent = currentMonth
 
-    switch (month) {
-        case 0:
-            currentMonthEl.textContent = "Jan"
-            break;
-        case 1:
-            currentMonthEl.textContent = "Feb"
-            break;
-        case 2:
-            currentMonthEl.textContent = "Mar"
-            break;
-        case 3:
-            currentMonthEl.textContent = "Apr"
-            break;
-        case 4:
-            currentMonthEl.textContent = "may"
-            break;
-        case 5:
-            currentMonthEl.textContent = "Jun"
-            break;
-        case 6:
-            currentMonthEl.textContent = "jul"
-            break;
-        case 7:
-            currentMonthEl.textContent = "Aug"
-            break;
-        case 8:
-            currentMonthEl.textContent = "Sep"
-            break;
-        case 9:
-            currentMonthEl.textContent = "oct"
-            break;
-        case 10:
-            currentMonthEl.textContent = "Nov"
-            break;
-        case 11:
-            currentMonthEl.textContent = "dec"
-        default:
-            break;
+    currentTimeEL.textContent = `${currentTimehours}:${currentTimeMinutes}`
 
-    }
-
+    getUserTimezone(weatherData)
 }
 
-updateCurrentLocationWeatherUi()
-updateCurrentLocationDay()
+async function getUserTimezone(weatherData) {
+    // const [weatherData, _] = await getUserCoordinates()
+    const currTime = new Date();
+
+    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    const tzAbbreviation = new Intl.DateTimeFormat(`en-${weatherData[5]}-u-va-posix`, {
+    timeZone: timeZone,
+    timeZoneName: 'short'
+    })
+    .formatToParts(currTime)
+    .find(part => part.type === 'timeZoneName').value;
+
+    currentTimezone.textContent = tzAbbreviation
+    console.log(tzAbbreviation); 
+}
+
+async function getUserSearchCoordinate(cityName) {
+    try {
+        let response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=218b2441a696c6d28af09f4c97b8c6d3`)
+
+        if(!response.ok) {
+            throw new Error (`Error: Server couldn't load data || ${response.status}`)
+        }
+
+        const data = await response.json()
+        const {lat, lon} = data[0]
+
+        return {lat, lon}
+        // console.log(lat, lon)
+
+    } catch (error) {
+        throw error
+    }
+}
+
+async function getSearchLocationWeatherData() {
+    try {
+        const searchedCityName = userSearchInput.value
+        const {lat, lon} = await getUserSearchCoordinate(searchedCityName)
+        const [searchedWeatherdata, searchedLocationName] = await Promise.all([getWeatherData(lat, lon), getUserLocationName(lat, lon)])
+
+        console.log(searchedWeatherdata, searchedLocationName)
+
+        const temp = searchedWeatherdata[0]
+        const humidity = searchedWeatherdata[1]
+        const windSpeed = searchedWeatherdata[2]
+        const weatherDescription = searchedWeatherdata[4]
+
+        console.log(temp, humidity, windSpeed, weatherDescription)
+        return [temp, humidity, windSpeed, weatherDescription]
+
+    } catch(error) {
+        throw error
+    }
+}
+
+
+async function init() {
+    const [weatherData, locationName] = await getUserCoordinates()
+
+    updateCurrentLocationWeatherUi(weatherData, locationName)
+    updateCurrentLocationDayTime(weatherData)
+}
+
+fetchWeatherDataBtn.addEventListener("click", ()=> {
+    getSearchLocationWeatherData()
+})
+
+init()
