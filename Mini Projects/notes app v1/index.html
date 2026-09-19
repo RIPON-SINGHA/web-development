@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes app v1</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- STATE 1: Empty -->
+  <div class="app-container">
+    <div class="topbar">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="note-icon-small" viewBox="0 0 16 16">
+        <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/>
+        <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z"/>
+      </svg>
+      <p class="topbar-title">Notes</p>
+      <button class="topbar-btn">+ new note</button>
+    </div>
+    <div class="empty-panel">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="note-icon" viewBox="0 0 16 16">
+        <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/>
+        <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z"/>
+      </svg>
+      <p class="empty-title">No notes yet</p>
+      <p class="empty-sub">Click "+ New note" to start writing something.</p>
+      <button class="empty-btn">+ new note</button>
+    </div>
+  </div>
+
+  <!-- STATE 2 -->
+
+  <div class="main-app-container">
+    <div class="topbar">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="note-icon-small" viewBox="0 0 16 16">
+        <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/>
+        <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z"/>
+      </svg>
+        <p class="topbar-title">Notes</p>
+        <button class="topbar-btn">+ new note</button>
+    </div>
+    <div class="main-app-panel">
+        <div class="note-list-container">
+            <div class="list-number">4 Notes</div>
+            <div class="note-list">
+                <p class="note-indicator-title">dasdwdaswdasadawds da wd aadwdsef</p>
+            </div>
+            <div class="note-list">
+                <p class="note-indicator-title">dasdwd aswdasa dawds da wd aadwdsef</p>
+            </div>
+            <div class="note-list">
+                <p class="note-indicator-title">dasdwdaswdasadawds da wd aadwdsef</p>
+            </div>
+            <div class="note-list">
+                <p class="note-indicator-title">dasdwdaswdasadawds da wd aadwdsef</p>
+            </div>
+        </div>
+        <div class="note-editor-panel">
+            <div class="editor-topbar">
+                <input class="note-title" value="This is a note" placeholder="No title" />
+                <div class="vertical-line-saperator"></div>
+                <button class="delete-note">Delete Note</button>
+            </div>
+            <textarea name="note-editor" class="editor-textarea" placeholder="start writing here"></textarea>
+            <div class="last-saved-time">last saved today at 4:30</div>
+        </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
