@@ -105,7 +105,8 @@ body {
 
 .main-app-panel {
     display: flex;
-    flex: 1
+    flex: 1;
+    overflow: hidden;
 }
 
 .note-editor-panel {
@@ -115,6 +116,8 @@ body {
 .note-list-container {
     width: 13%;
     border-right: 1px solid black;
+    overflow-y: auto;
+    height: 100%;
 }
 
 .list-number {
