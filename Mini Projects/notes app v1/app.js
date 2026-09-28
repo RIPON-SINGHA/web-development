@@ -8,10 +8,18 @@ const noteTitle = document.querySelector(".note-title")
 const noteTextArea = document.querySelector(".editor-textarea")
 const deleteNoteBtn = document.querySelector(".delete-note")
 
+const searchNoteEl = document.querySelector(".search-note")
+
+const characterCountEl = document.querySelector(".character-count")
+
+const lastSavedTimeIndicator = document.querySelector(".last-saved-time-indicator")
+
 let savedNotes = JSON.parse(localStorage.getItem("savedNotes"))
 
 let noteArray = savedNotes || []
-let activeNoteId = 0
+let activeNoteIdToOpen = JSON.parse(localStorage.getItem("activeNoteIdToOpen"))
+let activeNoteId = activeNoteIdToOpen || 0
+let debounceTimer
 
 function renderApp() {
 
@@ -23,25 +31,28 @@ function renderApp() {
         createNotePage.classList.add("hidden")
     }
 
-    defaultEditorAppearance()
-    renderNoteList()
+    if (activeNoteIdToOpen > 0) {
+        renderNoteEditor(activeNoteIdToOpen)
+    }
+    
+    renderNoteList(noteArray)
 }
 
 function createNewNote() {
     let newNote = {
         id: Date.now(),
         title: "",
-        body: "" 
+        body: "",
+        updatedAt: Date.now() 
     }
 
     noteArray.push(newNote)
     saveToLocalStorage()
     renderApp()
-    renderNoteList()
     renderNoteEditor(newNote.id) 
 }
 
-function renderNoteList() {
+function renderNoteList(notes) {
     noteListContainer.innerHTML = ""
 
     const numberOfNotes = noteArray.length
@@ -50,7 +61,7 @@ function renderNoteList() {
     numberOfNotesEl.textContent = `${numberOfNotes} Notes`
     noteListContainer.append(numberOfNotesEl)
 
-    noteArray.forEach(note => {
+    notes.forEach(note => {
         const noteListEl = document.createElement("div")
         const noteListTitle = document.createElement("p")
         noteListEl.classList.add("note-list")
@@ -60,9 +71,10 @@ function renderNoteList() {
 
         noteListEl.append(noteListTitle)
         noteListContainer.append(noteListEl)
-        
+    
     });
 }
+
 
 function renderNoteEditor(noteId) {
     const note = noteArray.find(item => item.id === noteId)
@@ -72,8 +84,13 @@ function renderNoteEditor(noteId) {
     noteTextArea.value = note.body
     deleteNoteBtn.id = activeNoteId
 
+    localStorage.setItem("activeNoteIdToOpen", activeNoteId)
+    activeNoteIdToOpen = activeNoteId
+
     noteTitle.disabled = false
     noteTextArea.disabled = false
+    showLastSavedTime()
+    characterWordCount(note.body)
 }
 
 function defaultEditorAppearance() {
@@ -81,6 +98,38 @@ function defaultEditorAppearance() {
     noteTextArea.value = "Select a note first"
     noteTitle.disabled = true
     noteTextArea.disabled = true
+}
+
+function debounceSave() {
+    clearTimeout(debounceTimer)
+    debounceTimer = setTimeout(() => {
+        const currentActiveNote = noteArray.find(item => item.id === activeNoteId)
+        currentActiveNote.updatedAt = Date.now()
+        saveToLocalStorage()
+        renderNoteList(noteArray)
+        showLastSavedTime()
+    }, 500);
+    
+}
+
+function showLastSavedTime() {
+    if(!activeNoteId) return
+    const activeNote = noteArray.find(item => item.id === activeNoteId)
+
+    if(!activeNote) return
+    const date = new Date(activeNote.updatedAt)
+
+    const hour = date.getHours()
+    const minute = date.getMinutes()
+
+    lastSavedTimeIndicator.textContent = `${hour}:${minute < 10 ? '0' + minute : minute}`
+}
+
+function characterWordCount(noteBody) {
+    const characterCount = noteBody.length
+    const wordCount = noteBody.split(" ").filter(word => word !== "").length
+
+    characterCountEl.textContent = `${characterCount} Characters , ${wordCount} Words`
 }
 
 document.addEventListener("click", (e) => {
@@ -103,8 +152,7 @@ noteTitle.addEventListener("input", () => {
     const currentNoteInList = noteArray.find(item => item.id === activeNoteId)
 
     currentNoteInList.title = noteTitle.value
-    saveToLocalStorage()
-    renderNoteList()
+    debounceSave()
 })
 
 noteTextArea.addEventListener("input", () => {
@@ -112,20 +160,39 @@ noteTextArea.addEventListener("input", () => {
     const currentNoteInEditor = noteArray.find(item => item.id === activeNoteId)
 
     currentNoteInEditor.body = noteTextArea.value
-    saveToLocalStorage()
+    debounceSave()
+    characterWordCount(noteTextArea.value)
 })
 
-deleteNoteBtn.addEventListener("click", (e) => {
+deleteNoteBtn.addEventListener("click", () => {
     if(!activeNoteId) return
+    const deleteIndex = noteArray.findIndex(item => item.id === activeNoteId)
     noteArray = noteArray.filter(item => item.id != activeNoteId)
     activeNoteId = 0
-
+    activeNoteIdToOpen = 0
+    localStorage.removeItem("activeNoteIdToOpen")
     saveToLocalStorage()
     renderApp()
 
     if(noteArray.length > 0) {
-        renderNoteEditor(noteArray[0].id)
+        renderNoteEditor(noteArray[deleteIndex - 1]?.id || noteArray[0].id)
     }
+})
+
+document.addEventListener("keydown", (e) => {
+    const isCtrlKey = (e.ctrlKey) && !e.shiftKey
+    if ((isCtrlKey && e.key.toLocaleLowerCase() === 'm')) {
+        e.preventDefault()
+        createNewNote()
+        noteTitle.focus()
+    }
+})
+
+searchNoteEl.addEventListener('input', () => {
+    if(!searchNoteEl) return 
+    const filteredArray = noteArray.filter(item => item.title.toLowerCase().includes(searchNoteEl.value.toLowerCase()))
+
+    renderNoteList(filteredArray)
 })
 
 function saveToLocalStorage() {
