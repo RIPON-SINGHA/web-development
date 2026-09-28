@@ -197,6 +197,23 @@ body {
     text-align: center;
 }
 
+.search-icon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.9;
+  margin-right: 3px;
+}
+
+.search-note {
+  margin-right: 10px;
+  padding: 5px 12px;
+  border-radius: 15px;
+}
+
+.character-count {
+  font-size: 13px;
+}
+
 .hidden {
   display: none;
 }
