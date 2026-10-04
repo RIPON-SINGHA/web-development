@@ -16,7 +16,7 @@ const lastSavedTimeIndicator = document.querySelector(".last-saved-time-indicato
 
 const exportBtnEL = document.querySelector(".exportBtn")
 
-const pinEl = document.querySelector(".pinned")
+const changeModeBtn = document.querySelector(".change-theme")
 
 let savedNotes = JSON.parse(localStorage.getItem("savedNotes"))
 
@@ -203,8 +203,8 @@ deleteNoteBtn.addEventListener("click", () => {
 })
 
 document.addEventListener("keydown", (e) => {
-    const isCtrlKey = (e.ctrlKey) && !e.shiftKey
-    if ((isCtrlKey && e.key.toLocaleLowerCase() === 'm')) {
+    const isCtrlKey = (e.ctrlKey) && (e.altKey) && !e.shiftKey
+    if ((isCtrlKey && e.key.toLocaleLowerCase() === 'n')) {
         e.preventDefault()
         createNewNote()
         noteTitle.focus()
@@ -232,12 +232,23 @@ exportBtnEL.addEventListener("click", () => {
     URL.revokeObjectURL(url)
 })
 
+changeModeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode")
+    const isDark = document.body.classList.contains("dark-mode")
+    changeModeBtn.textContent = isDark ? "🌙" : "☀️"
+
+    localStorage.setItem("theme", isDark ? "dark" : "light")
+})
+
 function saveToLocalStorage() {
     localStorage.setItem("savedNotes", JSON.stringify(noteArray))   
 }
 
 renderApp()
 
+if (localStorage.getItem("theme") === "dark"){
+    document.body.className = "dark-mode"
+}
 
 function clearLocal() {
     localStorage.clear()
