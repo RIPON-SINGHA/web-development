@@ -4,6 +4,24 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg-color: white;
+  --text-color: black;
+  --border-color: #ccc;
+  --btn-bg: white;
+  --input-bg: white;
+  --muted-color: gray;
+}
+
+.dark-mode {
+  --bg-color: #292e36;
+  --text-color: #e8e8e8;
+  --border-color: #444;
+  --btn-bg: #3a3f49;
+  --input-bg: #3a3f49;
+  --muted-color: #aaa;
+}
+
 body {
   font-family: sans-serif;
   min-height: 100vh;
@@ -12,12 +30,15 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 40px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .app-container {
   width: 100%;
   height: calc(100vh - 60px);
-  border: 1px solid black;
+  border: 1px solid var(--border-color);
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -29,24 +50,28 @@ body {
   align-items: center;
   padding: 0 16px;
   height: 50px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--border-color);
   flex-shrink: 0;
+  background-color: var(--bg-color);
 }
 
 .topbar-title {
   flex: 1;
   font-size: 16px;
   font-weight: 600;
+  color: var(--text-color);
 }
 
 .topbar-btn {
   height: 32px;
   padding: 0 14px;
   border-radius: 10px;
-  border: 1px solid black;
+  border: 1px solid var(--border-color);
   cursor: pointer;
   font-size: 13px;
-  background: white;
+  background: var(--btn-bg);
+  color: var(--text-color);
+  margin-right: 10px;
 }
 
 .empty-panel {
@@ -56,6 +81,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  background-color: var(--bg-color);
 }
 
 .note-icon {
@@ -66,20 +92,21 @@ body {
 }
 
 .note-icon-small {
-    width: 20px;
-    height: 20px;
-    opacity: 0.9;
-    margin-right: 3px;
+  width: 20px;
+  height: 20px;
+  opacity: 0.9;
+  margin-right: 3px;
 }
 
 .empty-title {
   font-size: 16px;
   font-weight: 600;
+  color: var(--text-color);
 }
 
 .empty-sub {
   font-size: 13px;
-  color: gray;
+  color: var(--muted-color);
 }
 
 .empty-btn {
@@ -87,114 +114,133 @@ body {
   height: 32px;
   padding: 0 14px;
   border-radius: 10px;
-  border: 1px solid black;
+  border: 1px solid var(--border-color);
   cursor: pointer;
   font-size: 13px;
-  background: white;
+  background: var(--btn-bg);
+  color: var(--text-color);
 }
 
 .main-app-container {
-    width: 100%;
-    height: calc(100vh - 60px);
-    border: 1px solid black;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+  width: 100%;
+  height: calc(100vh - 60px);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--bg-color);
 }
 
 .main-app-panel {
-    display: flex;
-    flex: 1;
-    overflow: hidden;
+  display: flex;
+  flex: 1;
+  overflow: hidden;
 }
 
 .note-editor-panel {
-    flex: 1
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--bg-color);
 }
 
 .note-list-container {
-    width: 13%;
-    border-right: 1px solid black;
-    overflow-y: auto;
-    height: 100%;
+  width: 13%;
+  border-right: 1px solid var(--border-color);
+  overflow-y: auto;
+  height: 100%;
+  background-color: var(--bg-color);
 }
 
 .list-number {
-    display: flex;
-    align-items: center;
-    height: 30px;
-    border-bottom: 1px solid black;
-    padding-left: 10px;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  border-bottom: 1px solid var(--border-color);
+  padding-left: 10px;
+  color: var(--text-color);
 }
 
 .note-list {
-    height: 50px;
-    border-bottom: 1px solid black;
-    display: flex;
-    align-items: center;
-    padding-left: 10px;
-    padding-right: 10px;
-    overflow: hidden;
-    cursor: pointer;
+  height: 50px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  color: var(--text-color);
 }
+
 .note-indicator-title {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-
-.note-editor-panel {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  flex: 1;
 }
 
 .editor-topbar {
-    height: 50px;
-    border-bottom: 1px solid black;
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    padding: 0 16px;
+  height: 50px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  padding: 0 16px;
+  background-color: var(--bg-color);
 }
 
 .note-title {
-    flex: 1;
-    font-size: 20px;
-    font-weight: 600;
-    border: none;
-    outline: none;
+  flex: 1;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-color);
 }
 
 .delete-note, .exportBtn {
-    padding: 5px 10px;
-    border-radius: 10px;
-    cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  background: var(--btn-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
 }
 
 .vertical-line-saperator {
-    border-left: 2px solid black; 
-    height: 30px;                
-    margin: 0 10px;               
-    display: inline-block;       
+  border-left: 2px solid var(--border-color);
+  height: 30px;
+  margin: 0 10px;
+  display: inline-block;
 }
 
 .editor-textarea {
-    flex: 1;
-    border: none;
-    outline: none;
-    resize: none;
-    padding: 14px;
-    font-size: 14px;
-    line-height: 1.7;
-    font-family: sans-serif;
+  flex: 1;
+  border: none;
+  outline: none;
+  resize: none;
+  padding: 14px;
+  font-size: 14px;
+  line-height: 1.7;
+  font-family: sans-serif;
+  background: transparent;
+  color: var(--text-color);
 }
 
 .last-saved-time {
-    height: 30px;
-    border-top: 1px solid black;
-    text-align: center;
+  height: 30px;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  font-size: 12px;
+  background-color: var(--bg-color);
 }
 
 .search-icon {
@@ -208,10 +254,15 @@ body {
   margin-right: 10px;
   padding: 5px 12px;
   border-radius: 15px;
+  background: var(--input-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  outline: none;
 }
 
 .character-count {
   font-size: 13px;
+  color: var(--text-color);
 }
 
 .hidden {
@@ -223,5 +274,14 @@ body {
 }
 
 .un-pinned {
-  opacity: 0.5;
+  opacity: 0.3;
+}
+
+.change-theme {
+  cursor: pointer;
+  font-size: 18px;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  margin-right: 10px;
 }
