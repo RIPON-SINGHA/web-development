@@ -14,6 +14,10 @@ const characterCountEl = document.querySelector(".character-count")
 
 const lastSavedTimeIndicator = document.querySelector(".last-saved-time-indicator")
 
+const exportBtnEL = document.querySelector(".exportBtn")
+
+const pinEl = document.querySelector(".pinned")
+
 let savedNotes = JSON.parse(localStorage.getItem("savedNotes"))
 
 let noteArray = savedNotes || []
@@ -43,7 +47,8 @@ function createNewNote() {
         id: Date.now(),
         title: "",
         body: "",
-        updatedAt: Date.now() 
+        updatedAt: Date.now(),
+        isPinned :false
     }
 
     noteArray.push(newNote)
@@ -53,6 +58,14 @@ function createNewNote() {
 }
 
 function renderNoteList(notes) {
+    const pinnedNotes = notes.filter(item => item.isPinned)
+    pinnedNotes.sort((a, b) => b.updatedAt - a.updatedAt)
+
+    const unpinnedNotes = notes.filter(item => !item.isPinned)
+    unpinnedNotes.sort((a, b) => b.updatedAt - a.updatedAt)
+
+    notes = pinnedNotes.concat(unpinnedNotes)
+    
     noteListContainer.innerHTML = ""
 
     const numberOfNotes = noteArray.length
@@ -64,13 +77,22 @@ function renderNoteList(notes) {
     notes.forEach(note => {
         const noteListEl = document.createElement("div")
         const noteListTitle = document.createElement("p")
+        const pinned = document.createElement("span")
         noteListEl.classList.add("note-list")
         noteListEl.id = note.id
         noteListTitle.classList.add("note-indicator-title")
         noteListTitle.textContent = note.title || "Untitled"
+        pinned.textContent = "📌"
+        pinned.className = note.isPinned ? "pinned" : "un-pinned"
 
-        noteListEl.append(noteListTitle)
+        noteListEl.append(noteListTitle, pinned)
         noteListContainer.append(noteListEl)
+
+        pinned.addEventListener("click", () => {
+            note.isPinned = !note.isPinned   
+            saveToLocalStorage()
+            renderNoteList(noteArray)
+        })
     
     });
 }
@@ -131,6 +153,7 @@ function characterWordCount(noteBody) {
 
     characterCountEl.textContent = `${characterCount} Characters , ${wordCount} Words`
 }
+
 
 document.addEventListener("click", (e) => {
     if(e.target.classList.contains("create-note-button")) {
@@ -193,6 +216,20 @@ searchNoteEl.addEventListener('input', () => {
     const filteredArray = noteArray.filter(item => item.title.toLowerCase().includes(searchNoteEl.value.toLowerCase()))
 
     renderNoteList(filteredArray)
+})
+
+exportBtnEL.addEventListener("click", () => {
+    console.log("dhahdawd")
+    const noteToExport = noteArray.find(item => item.id === activeNoteId)
+    const blob = new Blob([noteToExport.body], {type : "text/plain"})
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement("a")
+
+    link.href = url
+    link.download = `${noteToExport.title || "Untitled"}.txt`
+    link.click()
+
+    URL.revokeObjectURL(url)
 })
 
 function saveToLocalStorage() {
