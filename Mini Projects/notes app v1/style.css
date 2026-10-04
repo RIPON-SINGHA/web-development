@@ -167,7 +167,7 @@ body {
     outline: none;
 }
 
-.delete-note {
+.delete-note, .exportBtn {
     padding: 5px 10px;
     border-radius: 10px;
     cursor: pointer;
@@ -216,4 +216,12 @@ body {
 
 .hidden {
   display: none;
+}
+
+.pinned {
+  opacity: 1;
+}
+
+.un-pinned {
+  opacity: 0.5;
 }
