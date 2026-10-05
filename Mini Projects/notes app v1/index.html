@@ -70,7 +70,48 @@
                 <div class="vertical-line-saperator"></div>
                 <button class="delete-note">Delete Note</button>
             </div>
-            <textarea name="note-editor" class="editor-textarea" placeholder="start writing here"></textarea>
+
+            <div class="content-center">
+              <div class="editor-textarea" contenteditable="true">
+              </div>
+             <div class="formatting-area">
+              <div class="basic-format">Basic Format</div>
+                <div class="format-icon basic-formats" data-command="bold"> <b>B</b> </div>
+                <div class="format-icon basic-formats" data-command="italic"> <i>I</i> </div>
+                <div class="format-icon basic-formats" data-command="underline"> <u> _ </u> </div>
+                <div class="format-icon basic-formats" data-command="strikeThrough"> <strike>abc</strike> </div>
+                <div class="format-icon basic-formats" data-command="insertUnorderedList"> Un </div>
+                <div class="format-icon basic-formats" data-command="insertOrderedList"> Or </div>
+                <div class="format-icon basic-formats" data-command="formatBlock" data-value="h1"> H1 </div>
+                <div class="format-icon basic-formats" data-command="formatBlock" data-value="h2"> H2 </div>
+                <div class="format-icon basic-formats" data-command="formatBlock" data-value="h3"> H3 </div>
+
+              <div class="highlight-format"> <p>Highlighting</p> <button class="highlight-reset">reset</button> </div>
+
+                <div class="format-icon red " data-command="hiliteColor" data-value="red"></div>
+                <div class="format-icon green " data-command="hiliteColor" data-value="green"></div>
+                <div class="format-icon yellow " data-command="hiliteColor" data-value="yellow"></div>
+                <div class="format-icon blue " data-command="hiliteColor" data-value="blue"></div>
+                <div class="format-icon purple " data-command="hiliteColor" data-value="purple"></div>
+                <div class="format-icon orange " data-command="hiliteColor" data-value="orange"></div>
+                <div class="format-icon brown " data-command="hiliteColor" data-value="brown"></div>
+                <div class="format-icon pink " data-command="hiliteColor" data-value="pink"></div>
+                <div class="format-icon black " data-command="hiliteColor" data-value="black"></div>
+              
+              <div class="text-color"><p>Text color</p>  <button class="text-color-reset">reset</button> </div>
+                <div class="format-icon red " data-command="foreColor" data-value="red"></div>
+                <div class="format-icon green " data-command="foreColor" data-value="green"></div>
+                <div class="format-icon yellow " data-command="foreColor" data-value="yellow"></div>
+                <div class="format-icon blue -blue" data-command="foreColor" data-value="blue"></div>
+                <div class="format-icon purple " data-command="foreColor" data-value="purple"></div>
+                <div class="format-icon orange " data-command="foreColor" data-value="orange"></div>
+                <div class="format-icon brown " data-command="foreColor" data-value="brown"></div>
+                <div class="format-icon pink " data-command="foreColor" data-value="pink"></div>                
+                <div class="format-icon black " data-command="foreColor" data-value="black"></div>
+              </div>
+
+            </div>
+             
             <div class="last-saved-time">last saved today at <span class="last-saved-time-indicator">4:30</span></div>
         </div>
     </div>
