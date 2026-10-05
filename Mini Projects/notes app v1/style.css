@@ -229,6 +229,7 @@ body {
   font-family: sans-serif;
   background: transparent;
   color: var(--text-color);
+  overflow-y: auto;
 }
 
 .last-saved-time {
@@ -284,4 +285,109 @@ body {
   border: none;
   color: var(--text-color);
   margin-right: 10px;
+}
+
+.formatting-area {
+  height: 100%;
+  width: 207px;
+  border-left: 1px solid var(--border-color);
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 20px
+}
+
+.content-center {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  overflow-y: auto;
+}
+
+.format-icon {
+  height: 40px;
+  width: 40px;
+  border: 1px solid black;
+  margin-left: 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.basic-format {
+  width: 100%;
+  padding: 10px 0px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.highlight-format {
+  width: 100%;
+  padding: 10px 0px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.red {
+  background-color: red;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: green;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.purple {
+  background-color: purple;
+}
+
+.brown {
+  background-color: brown;
+}
+
+.pink {
+  background-color: pink;
+}
+
+.black {
+  background-color: black;
+}
+
+.text-color {
+  width: 100%;
+  padding: 10px 0px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.highlight-reset {
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.text-color-reset {
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
 }
