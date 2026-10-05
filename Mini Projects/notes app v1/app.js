@@ -18,6 +18,11 @@ const exportBtnEL = document.querySelector(".exportBtn")
 
 const changeModeBtn = document.querySelector(".change-theme")
 
+const formattingEl = document.querySelector(".formatting-area")
+
+const hilightColorResetBtn = document.querySelector(".highlight-reset")
+const textColorResetBtn = document.querySelector(".text-color-reset")
+
 let savedNotes = JSON.parse(localStorage.getItem("savedNotes"))
 
 let noteArray = savedNotes || []
@@ -103,23 +108,15 @@ function renderNoteEditor(noteId) {
 
     activeNoteId = note.id
     noteTitle.value = note.title
-    noteTextArea.value = note.body
+    noteTextArea.innerHTML = note.body
     deleteNoteBtn.id = activeNoteId
 
     localStorage.setItem("activeNoteIdToOpen", activeNoteId)
     activeNoteIdToOpen = activeNoteId
 
     noteTitle.disabled = false
-    noteTextArea.disabled = false
     showLastSavedTime()
-    characterWordCount(note.body)
-}
-
-function defaultEditorAppearance() {
-    noteTitle.value = "No note selected"
-    noteTextArea.value = "Select a note first"
-    noteTitle.disabled = true
-    noteTextArea.disabled = true
+    characterWordCount(noteTextArea.innerText)
 }
 
 function debounceSave() {
@@ -182,9 +179,9 @@ noteTextArea.addEventListener("input", () => {
     if(!activeNoteId) return
     const currentNoteInEditor = noteArray.find(item => item.id === activeNoteId)
 
-    currentNoteInEditor.body = noteTextArea.value
+    currentNoteInEditor.body = noteTextArea.innerHTML
     debounceSave()
-    characterWordCount(noteTextArea.value)
+    characterWordCount(noteTextArea.innerText)
 })
 
 deleteNoteBtn.addEventListener("click", () => {
@@ -219,14 +216,13 @@ searchNoteEl.addEventListener('input', () => {
 })
 
 exportBtnEL.addEventListener("click", () => {
-    console.log("dhahdawd")
     const noteToExport = noteArray.find(item => item.id === activeNoteId)
-    const blob = new Blob([noteToExport.body], {type : "text/plain"})
+    const blob = new Blob([noteToExport.body], {type : "text/html"})
     const url = URL.createObjectURL(blob)
     const link = document.createElement("a")
 
     link.href = url
-    link.download = `${noteToExport.title || "Untitled"}.txt`
+    link.download = `${noteToExport.title || "Untitled"}.html`
     link.click()
 
     URL.revokeObjectURL(url)
@@ -240,15 +236,55 @@ changeModeBtn.addEventListener("click", () => {
     localStorage.setItem("theme", isDark ? "dark" : "light")
 })
 
+formattingEl.addEventListener("click", (e) => {    
+    const element = e.target.closest(".format-icon")
+    if (!element) return
+
+    const command = element.dataset.command
+    const value = element.dataset.value
+
+    if (command === "formatBlock"){
+        const currentType = document.queryCommandValue("formatBlock")
+        document.execCommand("formatBlock", false, currentType === value ? "p" : value)
+    } else {
+        document.execCommand(command, false, value)
+    }
+})
+
+formattingEl.addEventListener("mousedown", (e) => {
+    e.preventDefault()
+})
+
+hilightColorResetBtn.addEventListener("click", () => {
+    const bg = "#292e36"
+    if(document.body.classList.contains("dark-mode")) {
+        document.execCommand("hiliteColor", false, bg)
+    } else {
+        document.execCommand("hiliteColor", false, "white")
+    }
+})
+
+textColorResetBtn.addEventListener("click", () => {
+    if(document.body.classList.contains("dark-mode")) {
+        document.execCommand("foreColor", false, "white")
+    } else {
+        document.execCommand("foreColor", false, "black")
+    }
+})
+
 function saveToLocalStorage() {
     localStorage.setItem("savedNotes", JSON.stringify(noteArray))   
 }
 
-renderApp()
-
-if (localStorage.getItem("theme") === "dark"){
-    document.body.className = "dark-mode"
+function checkAppThemeMode() {
+    if(localStorage.getItem("theme") === "dark") {
+        document.body.className = "dark-mode"
+        changeModeBtn.textContent = "🌙"
+    }
 }
+
+renderApp()
+checkAppThemeMode()
 
 function clearLocal() {
     localStorage.clear()
