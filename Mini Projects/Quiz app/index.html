@@ -39,7 +39,7 @@
             </div>
             
             <div class="quiz-info">
-                <p class="number-of-questions"> <span class="number">10</span> <span class="ino-label"> Questions</span> </p>
+                <p class="number-of-questions"> <span class="number">10</span> <span class="info-label"> Questions</span> </p>
                 <p class="timer-per-question"> <span class="time">15s</span> <span class="info-label">per Question</span> </p>
             </div>
 
@@ -49,7 +49,7 @@
 
 
     <!-- Quiz Screen -->
-     <section id="quiz-screen" class="app-screen">
+     <section id="quiz-screen" class="app-screen ">
         <div class="quiz-app-container">
 
             <div class="quiz-topbar">
@@ -57,8 +57,12 @@
                 <div class="show-score"> <span class="show-current-score">Score 2</span></div>
             </div>
 
-            <div class="time-track">
-                <div class="time-fill"></div>
+            <div class="timer">
+                <div class="time-track">
+                    <div class="time-fill"></div>
+                </div>
+
+                <span class="timer-text">09s</span>
             </div>
 
             <div class="quiz-basic-info">
@@ -78,6 +82,88 @@
 
 
      <!-- Result Screen -->
-      <section class="result-screen"></section>
+      <section id="result-screen" class="app-screen hidden">
+        <div class="result-app-container">
+
+
+            <div class="pointscore">
+                <span class="points-got">5</span>
+                <span class="total-points"> out of 10</span>
+            </div>
+
+            <div class="appriciation-text">Nice Work</div>
+            
+            <div class="quiz-info-result-screen">
+                <span>Medium</span><span>.</span><span>Science: Computers</span>
+            </div>
+
+            <div class="result-info-container">
+                <div class="result-info correct"><span>7</span> <span>Correct</span></div>
+                <div class="result-info wrong"><span>2</span> <span>Wrong</span></div>
+                <div class="result-info timed-out"><span>1</span> <span>Timed out</span></div>
+            </div>
+
+            <div class="review-title">Review your misses...</div>
+            <div class="review-wrong-answers">
+                <div class="wrong-answers wrong-answer-1">
+                    <div class="review-question">Which HTML attribute is used to define inline styles?</div>
+                    <div class="review-your-answer">
+                        <div class="your-answer"> <span>your answer:</span> <span>styles</span> </div>
+                        <div class="correct-answer"> <span>Correct answer:</span> <span>style</span> </div>
+                    </div>
+                    
+                </div>
+                <div class="wrong-answers wrong-answer-4">
+                    <div class="review-question">Which HTML attribute is used to define inline styles?</div>
+                    <div class="review-your-answer">
+                        <div class="your-answer"> <span>your answer:</span> <span>styles</span> </div>
+                        <div class="correct-answer"> <span>Correct answer:</span> <span>style</span> </div>
+                    </div>
+                </div>
+                <div class="wrong-answers wrong-answer-9">
+                    <div class="review-question">Which HTML attribute is used to define inline styles?</div>
+                    <div class="review-your-answer">
+                        <div class="your-answer"> <span>your answer:</span> <span>styles</span> </div>
+                        <div class="correct-answer"> <span>Correct answer:</span> <span>style</span> </div>
+                    </div>
+                </div>
+                <div class="wrong-answers wrong-answer-9">
+                    <div class="review-question">Which HTML attribute is used to define inline styles?</div>
+                    <div class="review-your-answer">
+                        <div class="your-answer"> <span>your answer:</span> <span>styles</span> </div>
+                        <div class="correct-answer"> <span>Correct answer:</span> <span>style</span> </div>
+                    </div>
+                </div>
+                <div class="wrong-answers wrong-answer-9">
+                    <div class="review-question">Which HTML attribute is used to define inline styles?</div>
+                    <div class="review-your-answer">
+                        <div class="your-answer"> <span>your answer:</span> <span>styles</span> </div>
+                        <div class="correct-answer"> <span>Correct answer:</span> <span>style</span> </div>
+                    </div>
+                </div>
+                <div class="wrong-answers wrong-answer-9">
+                    <div class="review-question">Which HTML attribute is used to define inline styles?</div>
+                    <div class="review-your-answer">
+                        <div class="your-answer"> <span>your answer:</span> <span>styles</span> </div>
+                        <div class="correct-answer"> <span>Correct answer:</span> <span>style</span> </div>
+                    </div>
+                </div>
+                <div class="wrong-answers wrong-answer-9">
+                    <div class="review-question">Which HTML attribute is used to define inline styles?</div>
+                    <div class="review-your-answer">
+                        <div class="your-answer"> <span>your answer:</span> <span>styles</span> </div>
+                        <div class="correct-answer"> <span>Correct answer:</span> <span>style</span> </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="after-result-actions">
+                <button class="play-again-button">Play Again</button>
+                <button class="change-category-button">Change Category</button>
+            </div>
+            
+        </div>
+      </section>
+
 </body>
 </html>
