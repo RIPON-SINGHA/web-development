@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Select Screen  -->
+    <section id="select-screen" class="app-screen hidden">
+        <div class="select-app-container">
+
+            <div class="app-icon-name">
+                <div class="app-icon">I</div>
+                <div class="app-name">Quiz App</div>
+            </div>
+
+            <div class="hero-title">TEST YOUR KNOWLEDGE WITH QUIZ APP</div>
+            <span class="sub-title">Pick a topic and a difficulty, then beat the clock.</span>
+
+            <span class="category">CATEGORY</span>
+            <div class="category-list">
+                <label for="quiz-category">Choose a category</label>
+                <select name="quiz-category" id="quiz-category">
+                    <option value="9">General Knowledge</option>
+                    <option value="11">Films</option>
+                    <option value="18">Science: Computer</option>
+                    <option value="17">Science and Nature</option>
+                    <option value="23">History</option>
+                </select>
+            </div>
+
+            <span class="difficulty-title">DIFFICULTY</span>
+            <div class="difficulty-options">
+                <button class="difficulty-btn" data-difficulty="easy">Easy</button>
+                <button class="difficulty-btn" data-difficulty="medium">Medium</button>
+                <button class="difficulty-btn" data-difficulty="hard">Hard</button>
+            </div>
+            
+            <div class="quiz-info">
+                <p class="number-of-questions"> <span class="number">10</span> <span class="ino-label"> Questions</span> </p>
+                <p class="timer-per-question"> <span class="time">15s</span> <span class="info-label">per Question</span> </p>
+            </div>
+
+            <button class="start-quiz-button">START QUIZ</button>
+        </div>
+    </section>
+
+
+    <!-- Quiz Screen -->
+     <section id="quiz-screen" class="app-screen">
+        <div class="quiz-app-container">
+
+            <div class="quiz-topbar">
+                <div class="show-attempts"> <span class="ques">Question</span> <span class="attempts">3 / 10</span></div>
+                <div class="show-score"> <span class="show-current-score">Score 2</span></div>
+            </div>
+
+            <div class="time-track">
+                <div class="time-fill"></div>
+            </div>
+
+            <div class="quiz-basic-info">
+                <span class="quiz-category">SCIENCE: COMPUTERS</span>
+                <span class="question-difficulty">MEDIUM</span>
+            </div>
+
+            <div class="quiz-question">Which HTML attribute is used to define inline styles?</div>
+            <button class="answer-option-button">Option 1</button>
+            <button class="answer-option-button">Option 2</button>
+            <button class="answer-option-button">Option 3</button>
+            <button class="answer-option-button">Option 4</button>
+
+            <button class="submit-answer">Submit answer</button>
+        </div>
+     </section>
+
+
+     <!-- Result Screen -->
+      <section class="result-screen"></section>
+</body>
+</html>
