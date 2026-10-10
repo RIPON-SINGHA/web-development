@@ -71,10 +71,13 @@
             </div>
 
             <div class="quiz-question">Which HTML attribute is used to define inline styles?</div>
-            <button class="answer-option-button">Option 1</button>
-            <button class="answer-option-button">Option 2</button>
-            <button class="answer-option-button">Option 3</button>
-            <button class="answer-option-button">Option 4</button>
+            <div class="quiz-answer-options">
+                <button class="answer-option-button selected">Option 1</button>
+                <button class="answer-option-button selected">Option 2</button>
+                <button class="answer-option-button selected">Option 3</button>
+                <button class="answer-option-button selected">Option 4</button>
+        </div>
+            
 
             <button class="submit-answer">Submit answer</button>
         </div>
@@ -98,9 +101,9 @@
             </div>
 
             <div class="result-info-container">
-                <div class="result-info correct"><span>7</span> <span>Correct</span></div>
-                <div class="result-info wrong"><span>2</span> <span>Wrong</span></div>
-                <div class="result-info timed-out"><span>1</span> <span>Timed out</span></div>
+                <div class="result-info correct"><span class="correct-number">7</span> <span>Correct</span></div>
+                <div class="result-info wrong"><span class="wrong-number">2</span> <span>Wrong</span></div>
+                <div class="result-info timed-out"><span class="timeout-number">1</span> <span>Timed out</span></div>
             </div>
 
             <div class="review-title">Review your misses...</div>
