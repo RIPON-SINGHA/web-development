@@ -154,6 +154,7 @@ body {
     background-color: black;
     border-radius: 999px;
     width: 40%;
+    transition: width 1s linear;    
 }
 
 .quiz-basic-info {
@@ -172,18 +173,32 @@ body {
     text-align: left;
     cursor: pointer;
     padding: 16px;
-    transition: background-color 0.3s ease-in;
+    /* transition: background-color 0.3s ease-in; */
 }
 
-.answer-option-button:focus {
+/* .answer-option-button:focus {
     background-color: gray;
-}
+} */
 
 .submit-answer {
     padding: 12px;
     border: none;
     border-radius: 15px;
     margin-top: auto;
+}
+
+.quiz-answer-options{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.question-difficulty {
+    text-transform: uppercase;
+}
+
+.selected {
+    background-color: gray;
 }
 
 
@@ -223,6 +238,7 @@ body {
 .quiz-info-result-screen {
     align-self: center;
     font-size: 1.1rem;
+    text-transform: uppercase;
 }
 
 .result-info-container {
@@ -266,13 +282,15 @@ body {
 }
 
 .review-question {
-    flex: 1;
+    flex: 1 1 0;
 }
 
 .review-your-answer {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    flex: 1 1 0;
+    min-width: 0;
 }
 
 
@@ -284,6 +302,7 @@ body {
     align-items: center;
     padding: 5px;
     gap: 3px;
+    text-align: left;
 }
 
 .correct-answer {
@@ -294,6 +313,7 @@ body {
     align-items: center;
     padding: 5px;
     gap: 3px;
+    text-align: left;
 }
 
 .after-result-actions {
