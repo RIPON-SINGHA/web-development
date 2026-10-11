@@ -44,6 +44,9 @@
             </div>
 
             <button class="start-quiz-button">START QUIZ</button>
+
+            <!-- ADDED: opens the scoreboard screen from the select screen -->
+            <button class="view-scoreboard-button">VIEW SCOREBOARD</button>
         </div>
     </section>
 
@@ -163,8 +166,29 @@
             <div class="after-result-actions">
                 <button class="play-again-button">Play Again</button>
                 <button class="change-category-button">Change Category</button>
+                <!-- ADDED: opens the scoreboard screen from the result screen -->
+                <button class="view-scoreboard-result-button">Scoreboard</button>
             </div>
             
+        </div>
+      </section>
+
+      <!-- ADDED: Scoreboard screen (the 4th screen). Shown with changeScreen("scoreboard"),
+           the id must be "scoreboard-screen" because showAppScreen() builds `${name}-screen` -->
+      <section id="scoreboard-screen" class="app-screen">
+        <div class="scoreboard-app-container">
+
+            <div class="scoreboard-title">Scoreboard</div>
+            <div class="scoreboard-subtitle">Your top 10 scores</div>
+
+            <!-- the rows are created by renderScoreboard() in app.js, so this stays empty -->
+            <div class="scoreboard-list"></div>
+
+            <div class="scoreboard-actions">
+                <button class="scoreboard-back-button">Back</button>
+                <button class="clear-scoreboard-button">Clear Scores</button>
+            </div>
+
         </div>
       </section>
 
