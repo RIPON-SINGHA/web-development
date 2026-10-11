@@ -29,6 +29,9 @@ const timedOutNumber = document.querySelector(".timeout-number")
 
 const wrongAnswersReviewContainer = document.querySelector(".review-wrong-answers")
 
+const playAgainBtn = document.querySelector(".play-again-button")
+const changeCategoryBtn = document.querySelector(".change-category-button")
+
 let timerId = null
 let currAppScreen = "select"
 
@@ -124,6 +127,12 @@ function renderQuizScreen() {
 }
 
 function advanceGame(answer) {
+    sumbitAnswer.disabled = false
+    document.querySelectorAll(".answer-option-button").forEach(el => {
+        el.disabled = false
+        el.classList.remove("user-ans-color")
+        el.classList.remove("correct-ans-color")
+    })
     stopTimer()
     quizScreenState.userAnswers.push(answer)
     const currentQuestion =  quizScreenState.questions[quizScreenState.currIdx]
@@ -142,7 +151,7 @@ function advanceGame(answer) {
 }
 
 function updateTimerUi() {
-    secondsLeft.textContent = quizScreenState.timeLeft < 10 ? `0${quizScreenState.timeLeft}s` : `${quizScreenState.timeLeft}`
+    secondsLeft.textContent = quizScreenState.timeLeft < 10 ? `0${quizScreenState.timeLeft}s` : `${quizScreenState.timeLeft}s`
     timerBarFill.style.width = (quizScreenState.timeLeft / 15) * 100 + "%"
 }
 
@@ -158,11 +167,13 @@ function startTimer() {
     timerBarFill.offsetWidth                 
     timerBarFill.style.transition = ""      
     updateTimerUi()
+    let time = Date.now()
     timerId = setInterval(() => {
         quizScreenState.timeLeft -= 1
         updateTimerUi()
         if(quizScreenState.timeLeft === 0) {
-            advanceGame(null)
+            console.log(Date.now()-time)
+            showFeedback(null)
         }
     }, 1000)
 }
@@ -192,10 +203,12 @@ function buildResultUi(result) {
     resultScreenPoints.textContent = quizResult.correct
     totalPoints.textContent = `out of ${quizResult.totalQuestions}`
 
-    if(quizResult.correct <= 3) {
+    if(quizResult.correct === 0) {
+        appriciationText.textContent = "Go Study"
+    } else if(quizResult.correct <= 3) {
         appriciationText.textContent = "Nice Work"
-    } else if(quizResult.correct <= 7) {
-        appriciationText.textContent = "Great job"
+    } else if (quizResult.correct <= 7){
+        appriciationText.textContent = "Great Job"
     } else {
         appriciationText.textContent = "Absolute Banger"
     }
@@ -222,15 +235,46 @@ function buildResultUi(result) {
         label.textContent = "Your answer"
         const value = document.createElement("span")
         value.textContent = item.yourAns ?? "No answer"
-
+        const correctAnsLabel = document.createElement("span")
+        correctAnsLabel.textContent = "Correct answer"
+        const correctAnsvalue = document.createElement("span")
+        correctAnsvalue.textContent = item.correctAnswer
         reviewQuestion.textContent = item.question
         yourAnsEl.append(label, ": ", value)
-        correctAnsEl.innerHTML = `<span>Correct answer:</span> <span>${item.correctAnswer}</span>`
+        correctAnsEl.append(correctAnsLabel, ": ", correctAnsvalue)
         reviewAnswerEl.append(yourAnsEl, correctAnsEl)
         wrongAnswerEl.append(reviewQuestion, reviewAnswerEl)
         wrongAnswersReviewContainer.appendChild(wrongAnswerEl)
     })
 
+}
+
+async function startGame() { 
+    const quizQuestions = await getQuizQuestions(selectScreenState.difficulty, selectScreenState.category)
+    if(!quizQuestions) return;
+
+    quizScreenState = createQuizStateObject()
+    getRefinedQuestionsAndOptions(quizQuestions)
+    renderQuizScreen()
+    changeScreen("quiz")
+    startTimer()
+}   
+
+function showFeedback(answer) {
+    stopTimer()
+    sumbitAnswer.disabled = true
+    document.querySelectorAll(".answer-option-button").forEach(el => {
+        el.disabled = true
+    })
+    const userAnsEl = [...document.querySelectorAll(".answer-option-button")].find(el => el.textContent.trim() === answer)
+    const correctAnsEl = [...document.querySelectorAll(".answer-option-button")].find(el => el.textContent.trim() === quizScreenState.questions[quizScreenState.currIdx].correctAns)
+    if(userAnsEl) {
+        userAnsEl.classList.add("user-ans-color")
+    }
+    correctAnsEl.classList.add("correct-ans-color")
+    setTimeout(() => {
+        advanceGame(answer)
+    }, 500);
 }
 
 selectCategory.addEventListener("change", (e) => {
@@ -257,22 +301,7 @@ startQuizBtn.addEventListener("click", async () => {
         return
     }
 
-    let diff = selectScreenState.difficulty
-    let cat = selectScreenState.category
-    
-    const quizQuestions = await getQuizQuestions(diff, cat)
-    if(!quizQuestions) {
-        console.log("something went wrong, please try again!")
-        return
-    };
-    quizScreenState = createQuizStateObject()
-
-    getRefinedQuestionsAndOptions(quizQuestions)
-    console.log(quizQuestions)
-
-    renderQuizScreen()
-    changeScreen("quiz")
-    startTimer()
+    startGame()
 })
 
 quizOptionContainer.addEventListener("click", (e) => {
@@ -291,8 +320,14 @@ quizOptionContainer.addEventListener("click", (e) => {
 
 sumbitAnswer.addEventListener("click", (e)=> {
     const answer = quizScreenState.selectedAnswer
-    advanceGame(answer)
+    showFeedback(answer)
     console.log(quizScreenState.userAnswers)
+})
+
+playAgainBtn.addEventListener("click", startGame)
+
+changeCategoryBtn.addEventListener("click", () => {
+    changeScreen("select")
 })
 
 
