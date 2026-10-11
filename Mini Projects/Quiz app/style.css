@@ -327,3 +327,107 @@ body {
     cursor: pointer;
 }
 
+.user-ans-color {
+    background-color: purple;
+}
+
+.correct-ans-color {
+    background-color: green;
+}
+
+
+/* ============================================================
+   ADDED: SCOREBOARD SCREEN CSS (everything below is new)
+   ============================================================ */
+
+/* ADDED: the result screen now has 3 buttons, so let them wrap on small screens */
+.after-result-actions {
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.view-scoreboard-result-button {
+    padding: 15px;
+    width: 150px;
+    cursor: pointer;
+}
+
+.view-scoreboard-button {
+    height: 40px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.scoreboard-app-container {
+    height: 100%;
+    background-color: red;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    gap: 20px;
+}
+
+.scoreboard-title {
+    font-size: 2rem;
+}
+
+.scoreboard-subtitle {
+    background-color: yellow;
+}
+
+/* the list scrolls inside itself, the same trick as .review-wrong-answers */
+.scoreboard-list {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    background-color: yellow;
+}
+
+.scoreboard-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: green;
+    margin: 10px;
+    padding: 10px;
+    flex-shrink: 0;
+}
+
+.scoreboard-rank {
+    font-size: 1.3rem;
+    min-width: 35px;
+}
+
+.scoreboard-score {
+    font-size: 1.3rem;
+    min-width: 70px;
+}
+
+.scoreboard-info {
+    flex: 1;
+    min-width: 0;
+    text-transform: capitalize;
+}
+
+.scoreboard-date {
+    font-size: 0.85rem;
+}
+
+.scoreboard-empty {
+    padding: 20px;
+    text-align: center;
+}
+
+.scoreboard-actions {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.scoreboard-back-button, .clear-scoreboard-button {
+    padding: 15px;
+    width: 150px;
+    cursor: pointer;
+}
