@@ -32,12 +32,23 @@ const wrongAnswersReviewContainer = document.querySelector(".review-wrong-answer
 const playAgainBtn = document.querySelector(".play-again-button")
 const changeCategoryBtn = document.querySelector(".change-category-button")
 
+const scoreboardList = document.querySelector(".scoreboard-list")
+
+const viewScoreBoardFromResultScreen = document.querySelector(".view-scoreboard-result-button")
+const viewScoreBoardFromSelectScreen = document.querySelector(".view-scoreboard-button")
+
+const scoreboardBackBtn = document.querySelector(".scoreboard-back-button")
+const deleteScoreboard = document.querySelector(".clear-scoreboard-button")
+
 let timerId = null
 let currAppScreen = "select"
 
+const SCOREBOARD_KEY = "quizScoreboard"
+const MAX_SCORE = 10
+
 const selectScreenState = {
     difficulty: null,
-    category : "9" 
+    category : "11" 
 }
 
 let quizScreenState = createQuizStateObject()
@@ -142,7 +153,9 @@ function advanceGame(answer) {
     quizScreenState.selectedAnswer = null
     quizScreenState.currIdx += 1
     if(quizScreenState.currIdx === quizScreenState.questions.length) {
-        buildResultUi(buildResultData())
+        const gameResult = buildResultData()
+        buildResultUi(gameResult)
+        saveScore(gameResult)
         changeScreen("result")
     } else {
         renderQuizScreen()
@@ -266,8 +279,8 @@ function showFeedback(answer) {
     document.querySelectorAll(".answer-option-button").forEach(el => {
         el.disabled = true
     })
-    const userAnsEl = [...document.querySelectorAll(".answer-option-button")].find(el => el.textContent.trim() === answer)
-    const correctAnsEl = [...document.querySelectorAll(".answer-option-button")].find(el => el.textContent.trim() === quizScreenState.questions[quizScreenState.currIdx].correctAns)
+    const userAnsEl = [...document.querySelectorAll(".answer-option-button")].find(el => el.textContent === answer)
+    const correctAnsEl = [...document.querySelectorAll(".answer-option-button")].find(el => el.textContent === quizScreenState.questions[quizScreenState.currIdx].correctAns)
     if(userAnsEl) {
         userAnsEl.classList.add("user-ans-color")
     }
@@ -275,6 +288,81 @@ function showFeedback(answer) {
     setTimeout(() => {
         advanceGame(answer)
     }, 500);
+}
+
+function saveScore(gameResult) {
+    const savedEntry = {
+        score: gameResult.correct,
+        total: gameResult.totalQuestions,
+        category: selectCategory.options[selectCategory.selectedIndex].text,
+        difficulty: selectScreenState.difficulty,
+        date: new Date().toISOString()
+    }
+
+    const savedScore = getSavedScore()
+    savedScore.push(savedEntry)
+
+    savedScore.sort((a, b) => b.score - a.score || new Date(b.date) - new Date(a.date))
+
+    const topScores = savedScore.slice(0, MAX_SCORE)
+
+    try {
+        localStorage.setItem(SCOREBOARD_KEY, JSON.stringify(topScores))
+    } catch (error) {
+        console.log("Data couldn't save to scoreboard...", error.message)
+    }
+}
+
+function getSavedScore() {
+    try {
+        const saved = JSON.parse(localStorage.getItem(SCOREBOARD_KEY))
+        return Array.isArray(saved) ? saved : []
+    } catch (error) {
+        console.log("Couldn't read the score board data...", error.message)
+        return []
+    }
+}
+
+function renderScoreBoard() {
+    const scores = getSavedScore()
+    scoreboardList.innerHTML = ""
+
+    if(scores.length === 0) {
+        const emptyEl = document.createElement("div")
+        emptyEl.classList.add("scoreboard-empty")
+        emptyEl.textContent = "No scores yet. Play a quiz to get on the board!"
+        scoreboardList.appendChild(emptyEl)
+        return
+    }
+
+    scores.forEach((score, i) => {
+        const rowEL = document.createElement("div")
+        rowEL.classList.add("scoreboard-row")
+
+        const rankEl = document.createElement("span")
+        rankEl.classList.add("scoreboard-rank")
+        rankEl.textContent = `#${i + 1}`
+
+        const scoreEl = document.createElement("span")
+        scoreEl.classList.add("scoreboard-score")
+        scoreEl.textContent = `${score.score} / ${score.total}`
+
+        const infoEl = document.createElement("span")
+        infoEl.classList.add("scoreboard-info")
+        infoEl.textContent = `${score.difficulty} . ${score.category}`
+
+        const dateEl = document.createElement("span")
+        dateEl.classList.add("scoreboard-date")
+        dateEl.textContent = new Date(score.date).toLocaleDateString()
+
+        rowEL.append(rankEl, scoreEl, infoEl, dateEl)
+        scoreboardList.appendChild(rowEL)
+    })
+}
+
+function showScoreboard() {
+    renderScoreBoard()
+    changeScreen("scoreboard")
 }
 
 selectCategory.addEventListener("change", (e) => {
@@ -329,6 +417,25 @@ playAgainBtn.addEventListener("click", startGame)
 changeCategoryBtn.addEventListener("click", () => {
     changeScreen("select")
 })
+
+viewScoreBoardFromResultScreen.addEventListener("click", showScoreboard)
+viewScoreBoardFromSelectScreen.addEventListener("click", showScoreboard)
+
+scoreboardBackBtn.addEventListener("click", () => {
+    changeScreen("select")
+})
+
+deleteScoreboard.addEventListener("click", () => {
+    if(!confirm("Do you want to delete all scores from scoreboard?")) return
+    try{
+        localStorage.removeItem(SCOREBOARD_KEY)
+    } catch (error) {
+        console.log("Couldn't finish the job.", error.message)
+    }
+
+    renderScoreBoard()
+})
+
 
 
 showAppScreen()
