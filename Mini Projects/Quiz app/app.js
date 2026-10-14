@@ -47,8 +47,7 @@ const SCOREBOARD_KEY = "quizScoreboard"
 const MAX_SCORE = 10
 
 const selectScreenState = {
-    difficulty: null,
-    category : "11" 
+    difficulty: null
 }
 
 let quizScreenState = createQuizStateObject()
@@ -263,7 +262,7 @@ function buildResultUi(result) {
 }
 
 async function startGame() { 
-    const quizQuestions = await getQuizQuestions(selectScreenState.difficulty, selectScreenState.category)
+    const quizQuestions = await getQuizQuestions(selectScreenState.difficulty, selectCategory.value)
     if(!quizQuestions) return;
 
     quizScreenState = createQuizStateObject()
@@ -364,10 +363,6 @@ function showScoreboard() {
     renderScoreBoard()
     changeScreen("scoreboard")
 }
-
-selectCategory.addEventListener("change", (e) => {
-    selectScreenState.category = e.target.value
-})
 
 selectDifficulty.addEventListener("click", (e) => {
     const diffBtn = e.target.closest(".difficulty-btn")
