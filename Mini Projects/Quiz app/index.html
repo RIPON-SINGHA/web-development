@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Select Screen  -->
-    <section id="select-screen" class="app-screen">
+    <section id="select-screen" class="app-screen hidden">
         <div class="select-app-container">
 
             <div class="app-icon-name">
-                <div class="app-icon">I</div>
+                <div class="app-icon"><i class="fa-solid fa-circle-question"></i></div>
                 <div class="app-name">Quiz App</div>
             </div>
 
@@ -21,7 +22,6 @@
 
             <span class="category">CATEGORY</span>
             <div class="category-list">
-                <label for="quiz-category">Choose a category</label>
                 <select name="quiz-category" id="quiz-category">
                     <option value="9">General Knowledge</option>
                     <option value="11">Films</option>
@@ -52,7 +52,7 @@
 
 
     <!-- Quiz Screen -->
-     <section id="quiz-screen" class="app-screen">
+     <section id="quiz-screen" class="app-screen hidden">
         <div class="quiz-app-container">
 
             <div class="quiz-topbar">
@@ -88,7 +88,7 @@
 
 
      <!-- Result Screen -->
-      <section id="result-screen" class="app-screen">
+      <section id="result-screen" class="app-screen hidden">
         <div class="result-app-container">
 
 
@@ -104,9 +104,9 @@
             </div>
 
             <div class="result-info-container">
-                <div class="result-info correct"><span class="correct-number">7</span> <span>Correct</span></div>
-                <div class="result-info wrong"><span class="wrong-number">2</span> <span>Wrong</span></div>
-                <div class="result-info timed-out"><span class="timeout-number">1</span> <span>Timed out</span></div>
+                <div class="result-info correct"><span class="correct-number">7</span> <span class="result-info-style">Correct</span></div>
+                <div class="result-info wrong"><span class="wrong-number">2</span> <span class="result-info-style">Wrong</span></div>
+                <div class="result-info timed-out"><span class="timeout-number">1</span > <span class="result-info-style">Timed out</span></div>
             </div>
 
             <div class="review-title">Review your misses...</div>
@@ -166,23 +166,20 @@
             <div class="after-result-actions">
                 <button class="play-again-button">Play Again</button>
                 <button class="change-category-button">Change Category</button>
-                <!-- ADDED: opens the scoreboard screen from the result screen -->
                 <button class="view-scoreboard-result-button">Scoreboard</button>
             </div>
             
         </div>
       </section>
 
-      <!-- ADDED: Scoreboard screen (the 4th screen). Shown with changeScreen("scoreboard"),
-           the id must be "scoreboard-screen" because showAppScreen() builds `${name}-screen` -->
-      <section id="scoreboard-screen" class="app-screen">
+      <section id="scoreboard-screen" class="app-screen ">
         <div class="scoreboard-app-container">
 
             <div class="scoreboard-title">Scoreboard</div>
             <div class="scoreboard-subtitle">Your top 10 scores</div>
 
-            <!-- the rows are created by renderScoreboard() in app.js, so this stays empty -->
-            <div class="scoreboard-list"></div>
+            <div class="scoreboard-list">
+            </div>
 
             <div class="scoreboard-actions">
                 <button class="scoreboard-back-button">Back</button>
