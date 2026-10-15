@@ -1,0 +1,267 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;   
+}
+
+body {
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: antiquewhite;
+}
+
+
+.app-screen {
+    width: 100%;
+    max-width: 550px;
+    height: 100%;
+    max-height: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.create-task-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    border: 1px solid blue;
+    flex-direction: column;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.first-task-input {
+    height: 50px;
+    width: 400px;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 1.1rem;
+}
+
+.first-task-description {
+    resize: none;
+    width: 400px;
+    height: 100px;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.add-first-task {
+    align-self: flex-end;
+    padding: 10px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.kanban-app-screen {
+    height: 100%;
+    width: 100%;
+}
+
+.kanban-app-container {
+    height: 100%;
+    width: 100%;
+}
+
+.kanban-topbar {
+    display: flex;
+    height: 5%;
+    align-items: center;
+    border-bottom: 1px solid black;
+    gap: 10px;
+}
+
+.search-icon {
+  width: 30px;
+  height: 30px;
+  opacity: 0.9;
+  margin-right: 3px;
+}
+
+.app-title {
+    flex: 1;
+    font-size: 1.3rem;
+}
+
+.app-icon {
+    height: 20px;
+    width: 20px;
+    margin-left: 10px;
+}
+
+.show-todo-input {
+    padding: 10px 15px;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.search-task-input {
+    height: 40px;
+    width: 500px;
+    margin-right: 20px;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.kanban-board-container {
+    height: 95%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.task-details {
+    display: flex;
+    align-items: center;
+}
+
+.task-count {
+    margin-right: 5px;
+}
+
+.task-column {
+    height: auto;
+    width: 400px;
+    border: 1px solid black;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0px 10px;
+    border-radius: 10px;
+}
+
+.task-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.column-title {
+    font-size: 1.5rem;
+    align-self: center;
+    flex: 1;
+}
+
+.task-card {
+    height: 120px;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* .in-progress-task-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; 
+} */
+
+.in-progress-task {
+    height: 120px;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* .completed-task-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; 
+} */
+
+.completed-task {
+    height: 120px;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.task-title {
+    font-size: 1.3rem;
+}
+
+.task-description {
+    font-size: .9rem;
+}
+
+.creation-time {
+    align-self: flex-end;
+}
+
+.empty-msg {
+    font-size: 1.2rem;
+    opacity: 0.5;
+}
+
+.add-new-todo-task {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    border: 1px solid blue;
+    background-color:beige;
+    flex-direction: column;
+    padding: 30px;
+    border-radius: 20px;
+    position: absolute;
+}
+
+.cancel {
+    align-self: flex-start;
+    padding: 10px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+    top: 70px;
+}
+
+.todo-task-input {
+    height: 50px;
+    width: 400px;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 1.1rem;
+}
+
+.add-todo-task {
+    align-self: flex-end;
+    padding: 10px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.todo-task-description {
+    resize: none;
+    width: 400px;
+    height: 100px;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.hidden {
+    display: none;
+}
+
+
