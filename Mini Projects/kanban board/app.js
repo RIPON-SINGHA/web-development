@@ -32,8 +32,10 @@ function renderKanbanApp() {
         const columnStatus = column.dataset.status
         const filertedTasks = tasks.filter(item => item.status === columnStatus)
         const taskContainer = column.querySelector(".task-container")
+        const taskCount = column.querySelector(".task-count")
         taskContainer.innerHTML = ""
-
+        taskCount.textContent = filertedTasks.length
+        
         if(filertedTasks.length === 0) {
             const emptyMsg = document.createElement("p")
             emptyMsg.classList.add("empty-msg")
@@ -72,7 +74,7 @@ addFirstTaskBtn.addEventListener("click", () => {
     if(firstTaskInputEl.value.trim().length !== 0) {
         const date = new Date()
         const formattedDate = date.toLocaleString('en-US', { month: 'short', day: 'numeric' });
-        tasks.push({id: Date.now(), name: firstTaskInputEl.value, description: taskDescriptionEl.value, creationDate: formattedDate, status: "todo"})
+        tasks.push({id: Date.now(), name: firstTaskInputEl.value, description: taskDescriptionEl.value.trim(), creationDate: formattedDate, status: "todo"})
         firstTaskInputEl.value = ""
         taskDescriptionEl.value = ""
     }
