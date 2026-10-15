@@ -199,6 +199,7 @@ body {
 
 .task-title {
     font-size: 1.3rem;
+    font-weight: 500;
 }
 
 .task-description {
@@ -232,8 +233,6 @@ body {
     padding: 10px 25px;
     border-radius: 10px;
     cursor: pointer;
-    position: relative;
-    top: 70px;
 }
 
 .todo-task-input {
@@ -258,6 +257,13 @@ body {
     border-radius: 15px;
     padding: 10px;
     font-size: 1rem;
+}
+
+.action {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
 }
 
 .hidden {

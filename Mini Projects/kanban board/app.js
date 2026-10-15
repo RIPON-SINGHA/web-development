@@ -47,6 +47,7 @@ function renderKanbanApp() {
             const taskCard = document.createElement("div")
             taskCard.classList.add("task-card")
             taskCard.draggable = true
+            taskCard.dataset.id = task.id
 
             const taskTitle = document.createElement("span")
             taskTitle.classList.add("task-title")
@@ -68,16 +69,20 @@ function renderKanbanApp() {
     })
 }
 
+function createNewTask(title, desc) {
+    if(title.value.trim().length !== 0) {
+        const date = new Date()
+        const formattedDate = date.toLocaleString('en-US', { month: 'short', day: 'numeric' });
+        tasks.push({id: Date.now(), name: title.value, description: desc.value.trim(), creationDate: formattedDate, status: "todo"})
+        title.value = ""
+        desc.value = ""
+    }
+}
+
 showAppScreen()
 
 addFirstTaskBtn.addEventListener("click", () => {
-    if(firstTaskInputEl.value.trim().length !== 0) {
-        const date = new Date()
-        const formattedDate = date.toLocaleString('en-US', { month: 'short', day: 'numeric' });
-        tasks.push({id: Date.now(), name: firstTaskInputEl.value, description: taskDescriptionEl.value.trim(), creationDate: formattedDate, status: "todo"})
-        firstTaskInputEl.value = ""
-        taskDescriptionEl.value = ""
-    }
+    createNewTask(firstTaskInputEl, taskDescriptionEl)
 
     showAppScreen()
 })
@@ -93,14 +98,8 @@ cancelCreateNewTask.addEventListener("click", () => {
 })
 
 addTodoTask.addEventListener("click", () => {
-    if(todoTaskInput.value.trim().length !== 0) {
-        const date = new Date()
-        const formattedDate = date.toLocaleString('en-US', { month: 'short', day: 'numeric' });
-        tasks.push({id: Date.now(), name: todoTaskInput.value, description: todoTaskDescription.value, creationDate: formattedDate, status: "todo"})
-        todoTaskInput.value = ""
-        todoTaskDescription.value = ""
-        addNewTodoTaskContainer.classList.add("hidden")
-    } 
+    createNewTask(todoTaskInput, todoTaskDescription)
+    addNewTodoTaskContainer.classList.add("hidden")
 
     showAppScreen()
 })
