@@ -13,7 +13,8 @@ const addNewTodoTaskContainer = document.querySelector(".add-new-todo-task")
 const cancelCreateNewTask = document.querySelector(".cancel")
 const addTodoTask = document.querySelector(".add-todo-task")
 
-let tasks = []
+let savedTasks = JSON.parse(localStorage.getItem("savedTasks"))
+let tasks = Array.isArray(savedTasks) ? savedTasks : []
 
 function showAppScreen() {
     if(tasks.length === 0) {
@@ -63,6 +64,17 @@ function renderKanbanApp() {
 
             taskCard.append(taskTitle, taskDesc, taskCreationTime)
             taskContainer.appendChild(taskCard)
+
+            taskCard.addEventListener("dragstart", (e) => {
+                e.dataTransfer.setData("text/plain", task.id)
+                e.dataTransfer.effectAllowed = "move"
+                taskCard.classList.add("dragging")
+            })
+
+            taskCard.addEventListener("dragend", (e) => {
+                taskCard.classList.remove("dragging")
+
+            })
         })
     }
 
@@ -79,11 +91,15 @@ function createNewTask(title, desc) {
     }
 }
 
+function saveTasksToLocalStorage() {
+    localStorage.setItem("savedTasks", JSON.stringify(tasks))
+}
+
 showAppScreen()
 
 addFirstTaskBtn.addEventListener("click", () => {
     createNewTask(firstTaskInputEl, taskDescriptionEl)
-
+    saveTasksToLocalStorage()
     showAppScreen()
 })
 
@@ -100,9 +116,30 @@ cancelCreateNewTask.addEventListener("click", () => {
 addTodoTask.addEventListener("click", () => {
     createNewTask(todoTaskInput, todoTaskDescription)
     addNewTodoTaskContainer.classList.add("hidden")
-
+    saveTasksToLocalStorage()
     showAppScreen()
 })
+
+document.querySelectorAll(".task-column").forEach(column => {
+    column.addEventListener("dragover", (e) => {
+        e.preventDefault()
+    })
+
+    column.addEventListener("drop", (e) => {
+        e.preventDefault()
+        const taskId = e.dataTransfer.getData("text/plain")
+
+        const task = tasks.find(item => String(item.id) === taskId)
+        if(!task) return
+
+        task.status = column.dataset.status
+
+        saveTasksToLocalStorage()
+        renderKanbanApp()
+    })
+})
+
+
 
 
 

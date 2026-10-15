@@ -266,6 +266,10 @@ body {
 
 }
 
+.dragging {
+    opacity: 0.9;
+}
+
 .hidden {
     display: none;
 }
