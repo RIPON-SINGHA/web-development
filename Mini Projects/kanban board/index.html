@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Board</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- CREATE FIRST TASK SCREEN -->
+     <section id="create-task-screen" class="app-screen ">
+        <h1 class="welcome-text">Welcome to Kanban Board</h1>
+        <div class="create-task-container">
+            <input type="text" placeholder="Add your first task" class="first-task-input">
+            <textarea name="first-task-description" class="first-task-description" placeholder="Write your task's description"></textarea>
+            <button class="add-first-task">Add task</button>
+        </div>
+     </section>
+
+     <!-- KANBAN BOARD SCREEN -->
+      <section id="kanban-screen" class="kanban-app-screen">
+        <div class="kanban-app-container">
+            <div class="kanban-topbar">
+                    <svg class= "app-icon" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 472.37"><path fill-rule="nonzero" d="M145.33 172.6l57.21-.75c2.76-.04 5.33.74 7.51 2.1 11.85 6.86 23.04 14.67 33.45 23.48 5.86 4.97 11.53 10.28 16.99 15.96 19.67-30.56 43.04-61.58 67.52-90.78 31.9-38.04 65.91-73.2 96.22-100.37 2.65-2.37 5.97-3.53 9.26-3.53l44.22-.07c7.7 0 13.95 6.25 13.95 13.95 0 3.86-1.56 7.34-4.09 9.87-40.58 45.12-82.2 96.78-119.92 149.72-34.92 49.02-66.55 99.17-90.93 146.26-3.52 6.83-11.92 9.51-18.75 5.99a13.796 13.796 0 01-6.23-6.5c-13.36-28.57-29.28-54.8-48.23-78.2-18.93-23.37-41-44.09-66.69-61.72-6.35-4.33-7.98-13-3.65-19.35 2.82-4.14 7.49-6.27 12.16-6.06zM62.55 0h270.16c-19.14 19.72-35.72 38.96-49.97 57.45H62.55c-1.42 0-2.71.57-3.64 1.46a5.27 5.27 0 00-1.46 3.64v347.26c0 1.34.6 2.6 1.54 3.55.96.95 2.23 1.56 3.56 1.56h386.89c1.29 0 2.55-.62 3.52-1.58.97-.97 1.59-2.24 1.59-3.53V213.59c20.82-8.61 40.4-17.48 57.45-25.81v222.03c0 17.14-7.11 32.82-18.43 44.14-11.33 11.33-26.99 18.42-44.13 18.42H62.55c-17.13 0-32.83-7.06-44.17-18.4C7.08 442.67 0 427.03 0 409.81V62.55C0 45.4 7.04 29.78 18.35 18.46l.11-.11C29.78 7.04 45.4 0 62.55 0z"/></svg>
+                <h3 class="app-title">Kanban Board</h3>
+                <button class="show-todo-input">Add task in todo</button>
+                <svg class="search-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>ionicons-v5-f</title><path d="M221.09,64A157.09,157.09,0,1,0,378.18,221.09,157.1,157.1,0,0,0,221.09,64Z" style="fill:none;stroke:#000000;stroke-miterlimit:10;stroke-width:32px"></path><line x1="338.29" y1="338.29" x2="448" y2="448" style="fill:none;stroke:#000000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"></line></g></svg>
+                <input type="text" placeholder="search your task" class="search-task-input">
+            </div>
+
+            <div class="kanban-board-container">
+                <div class="task-column" data-status="todo">
+                    <div class="task-details">
+                        <h3 class="column-title">To Do</h3>
+                        <span class="task-count">3</span>
+                        <p class="task-count-title">Tasks</p>
+                    </div>
+                    
+                    <div class="task-container">
+                        <div class="task-card" draggable="true">
+                            <span class="task-title">Watch Movies</span>
+                            <p class="task-description">Watch avengers end game</p>
+                            <span class="creation-time">Sep 29</span>
+                        </div>
+                        <div class="task-card" draggable="true">
+                            <span class="task-title">Watch Movies</span>
+                            <p class="task-description">Watch avengers end game</p>
+                            <span class="creation-time">Sep 29</span>
+                        </div>
+                        <div class="task-card" draggable="true">
+                            <span class="task-title">Watch Movies</span>
+                            <p class="task-description">Watch avengers end game</p>
+                            <span class="creation-time">Sep 29</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="task-column" data-status="in-progress">
+                    <div class="task-details">
+                        <h3 class="column-title">In Progress</h3>
+                        <span class="task-count">3</span>
+                        <p class="task-count-title">Tasks</p>
+                    </div>
+                    <div class="task-container">
+                        <div class="task-card" draggable="true">
+                            <span class="task-title">Watch Movies</span>
+                            <p class="task-description">Watch avengers end game</p>
+                            <span class="creation-time">Sep 29</span>
+                        </div>
+                        <div class="task-card" draggable="true">
+                            <span class="task-title">Watch Movies</span>
+                            <p class="task-description">Watch avengers end game</p>
+                            <span class="creation-time">Sep 29</span>
+                        </div>
+                        <div class="task-card" draggable="true">
+                            <span class="task-title">Watch Movies</span>
+                            <p class="task-description">Watch avengers end game</p>
+                            <span class="creation-time">Sep 29</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="task-column" data-status="completed">
+                    <div class="task-details">
+                        <h3 class="column-title">completed</h3>
+                        <span class="task-count">3</span>
+                        <p class="task-count-title">Tasks</p>
+                    </div>
+                    <div class="task-container">
+                        <div class="task-card" draggable="true">
+                            <span class="task-title">Watch Movies</span>
+                            <p class="task-description">Watch avengers end game</p>
+                            <span class="creation-time">Sep 29</span>
+                        </div>
+                        <div class="task-card" draggable="true">
+                            <span class="task-title">Watch Movies</span>
+                            <p class="task-description">Watch avengers end game</p>
+                            <span class="creation-time">Sep 29</span>
+                        </div>
+                        <div class="task-card" draggable="true">
+                            <span class="task-title">Watch Movies</span>
+                            <p class="task-description">Watch avengers end game</p>
+                            <span class="creation-time">Sep 29</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      <div class="add-new-todo-task hidden">
+        <input type="text" class="todo-task-input" placeholder="Add task's title">
+        <textarea name="first-task-description" class="todo-task-description" placeholder="Write your task's description"></textarea>
+        <button class="cancel">Cancel</button>
+        <button class="add-todo-task">Add task</button>
+      </div>
+
+      <script src="app.js"></script>
+</body>
+</html>
