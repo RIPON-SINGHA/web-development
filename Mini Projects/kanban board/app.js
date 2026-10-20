@@ -60,6 +60,14 @@ function renderKanbanApp() {
             taskCard.classList.add("task-card")
             taskCard.draggable = true
             taskCard.dataset.id = task.id
+            if(task.status === "todo") {
+                taskCard.style.backgroundColor = "#ebf5ff"
+            } else if(task.status === "in-progress") {
+                taskCard.style.backgroundColor = "#ffeee7"
+            } else {
+                taskCard.style.backgroundColor = "#e3f9ed"
+
+            }
 
             const taskTitle = document.createElement("span")
             taskTitle.classList.add("task-title")
