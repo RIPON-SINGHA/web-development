@@ -1,0 +1,66 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    color-scheme: dark;
+    --site-primary : #111318;
+    --site-heading: #d9d9da;
+    --site-description-color: #64656c;
+    --site-link-color: #6e6e76;
+    --site-link-active-color: #8b6d0e;
+    --site-movie-rating-color: #8b6d0e;
+    --site-button-color: #eab308;
+    --site-font-body: Georgia, 'Times New Roman', serif;
+    --site-font-heading: 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+}
+
+body {
+    min-height: 100dvh;
+    background-color: var(--site-primary);
+    display: flex;
+    flex-direction: column;
+}
+
+.app-header {
+    display: flex;
+    gap:20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-nav-heading {
+    flex: 1
+}
+
+.navbar {
+    display: flex;
+    width: 200px;
+    justify-content: space-evenly;
+}
+
+.app-header a {
+    text-decoration: none;
+    outline: none;
+    color: var(--site-heading)
+}
+
+.navbar a {
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    color: var(--site-link-color);
+}
+
+.app-logo {
+    fill: rgb(255, 200, 0);
+    margin-left: 10px;
+}
+
+.headder-main-separator {
+    border: none;
+    height: 2px;
+    background-color: white;
+}
