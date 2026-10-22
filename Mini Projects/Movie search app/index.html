@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Search App</title>
+    <link rel="stylesheet" href="common.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,11 +17,165 @@
         </a>
 
         <nav class="navbar">
-            <a href="#home">Home</a>
-            <a href="#favorite">Favorite</a>
+            <a href="index.html">Home</a>
+            <a href="favorite.html">Favorite</a>
         </nav>
     </header>
-
     <hr class="headder-main-separator">
+
+    <main id="home" class="main-app-body">
+        <section aria-labelledby="search-heading" class="searching-section">
+            <div class="home-page-header">
+                <h1 id="search-heading">
+                    Find your next obsession.
+                </h1>
+
+                <p class="sub-description">
+                    Discover movies and series worth your time.
+                </p>
+            </div>
+            
+
+            <form id="movie-search-form" role="search">
+                <input type="search" class="movie-search" name="query" placeholder="Search movies or TV shows..." required>
+
+                <button class="submit-search">Search</button>
+            </form>
+        </section>
+
+        <section class="search-results-section " aria-labelledby="search-results-heading">
+            <h3 class="results-header" id="search-results-heading">
+                Results for <span class="search-query">"Breakng bad"</span>
+            </h3>
+
+            <ul id="search-results">
+                <li>
+                    <article class="movie-card">
+                        <div class="poster-container">
+                            <a href="#">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4VufX33CdoFu2j__Cl_tCRuDeCMVoK-ieo933iS7LEg&s=10" alt="" class="movie-poster">
+                            </a>
+                        </div>
+
+                        <div class="info-action">
+                            <p class="movie-year">2025</p>
+                            <p class="movie-rating">9.9/10</p>
+                            <button class="add-to-fav-btn">♡</button>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+        </section>
+
+        <section class="featured-movies-wrap " aria-labelledby="featured-movies">
+            <div class="featured-movies-direction">
+                <h3 class="direction-header">
+                    Not sure what to search?
+                </h3>
+
+                <p>Popular searches · Trending movies · Trending series</p>
+            </div>
+            
+            <ul id="featured-movies">
+                <li>
+                    <article class="movie-card">
+                        <div class="poster-container">
+                             <a href="#">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4VufX33CdoFu2j__Cl_tCRuDeCMVoK-ieo933iS7LEg&s=10" alt="Breaking Bad" class="movie-poster">
+                            </a>
+                        </div>
+                       
+                        <div class="info-action">
+                            <p class="movie-year">2025</p>
+                            <p class="movie-rating">9.9/10 IMDB</p>
+                            <button class="add-to-fav-btn">
+                                ♡
+                            </button>
+                        </div>
+                        
+                    </article>
+                </li>
+
+                <li>
+                    <article class="movie-card">
+                        <div class="poster-container">
+                             <a href="#">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4VufX33CdoFu2j__Cl_tCRuDeCMVoK-ieo933iS7LEg&s=10" alt="Breaking Bad" class="movie-poster">
+                            </a>
+                        </div>
+                       
+                        <div class="info-action">
+                            <p class="movie-year">2025</p>
+                            <p class="movie-rating">9.9/10 IMDB</p>
+                            <button class="add-to-fav-btn">
+                                ♡
+                            </button>
+                        </div>
+                        
+                    </article>
+                </li>
+
+                <li>
+                    <article class="movie-card">
+                        <div class="poster-container">
+                             <a href="#">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4VufX33CdoFu2j__Cl_tCRuDeCMVoK-ieo933iS7LEg&s=10" alt="Breaking Bad" class="movie-poster">
+                            </a>
+                        </div>
+                       
+                        <div class="info-action">
+                            <p class="movie-year">2025</p>
+                            <p class="movie-rating">9.9/10 IMDB</p>
+                            <button class="add-to-fav-btn">
+                                ♡
+                            </button>
+                        </div>
+                        
+                    </article>
+                </li>
+
+                <li>
+                    <article class="movie-card">
+                        <div class="poster-container">
+                             <a href="#">
+                                <img src="https://resizing.flixster.com/hu13NxX2cqnYsnL7vDtkOoq7Z-A=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzLzQwYTA0ZmQyLTEzZmMtNGIwMS1hNDdjLTE3NWIwOTY2MzNkYi5qcGc=" alt="Breaking Bad" class="movie-poster">
+                            </a>
+                        </div>
+                       
+                        <div class="info-action">
+                            <p class="movie-year">2025</p>
+                            <p class="movie-rating">9.9/10 IMDB</p>
+                            <button class="add-to-fav-btn">
+                                ♡
+                            </button>
+                        </div>
+                        
+                    </article>
+                </li>
+
+                <li>
+                    <article class="movie-card">
+                        <div class="poster-container">
+                             <a href="#">
+                                <img src="https://thumb.wikimedia.org/wikipedia/en/thumb/8/8e/Dune_%282021_film%29.jpg/250px-Dune_%282021_film%29.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail" alt="Breaking Bad" class="movie-poster">
+                            </a>
+                        </div>
+                       
+                        <div class="info-action">
+                            <p class="movie-year">2025</p>
+                            <p class="movie-rating">9.9/10 IMDB</p>
+                            <button class="add-to-fav-btn">
+                                ♡
+                            </button>
+                        </div>
+                        
+                    </article>
+                </li>
+
+                
+            </ul>
+
+        </section>
+    </main>
 </body>
 </html>
