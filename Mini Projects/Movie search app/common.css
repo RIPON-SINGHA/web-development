@@ -1,0 +1,154 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    color-scheme: dark;
+    --site-primary : #111318;
+    --site-heading: #d9d9da;
+    --site-description-color: #64656c;
+    --site-link-color: #6e6e76;
+    --site-link-active-color: #8b6d0e;
+    --site-movie-rating-color: #8b6d0e;
+    --site-button-color: #eab308;
+    --site-input-bg: #27272a;
+    --site-font-on-dark-bg: #d9d9da;
+    --site-font-on-light-bg: black;
+    --site-font-body: Georgia, 'Times New Roman', serif;
+    --site-font-heading: 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+}
+
+body {
+    min-height: 100dvh;
+    background-color: var(--site-primary);
+    display: flex;
+    flex-direction: column;
+}
+
+
+.app-header {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-nav-heading {
+    flex: 1
+}
+
+.navbar {
+    display: flex;
+    width: 200px;
+    justify-content: space-evenly;
+}
+
+.app-header a {
+    text-decoration: none;
+    outline: none;
+    color: var(--site-heading)
+}
+
+.navbar a {
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    color: var(--site-link-color);
+}
+
+.app-logo {
+    fill: rgb(255, 200, 0);
+    margin-left: 10px;
+}
+
+.headder-main-separator {
+    border: none;
+    height: 1px;
+    background-color: white;
+    opacity: 0.5;
+}
+
+
+.movie-card {
+    width: 240px;
+    height: 400px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+}
+
+/* fixed poster area; the zoom is clipped inside it, so the card never changes size */
+.poster-container {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+/* the link wrapper has to be a block, or the image's 100% height doesn't work */
+.poster-container a {
+    display: block;
+    height: 100%;
+}
+
+.movie-poster {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease-out;
+}
+
+.poster-container:hover .movie-poster {
+    transform: scale(1.1);
+}
+
+.info-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.movie-year, .movie-rating {
+    font-family: sans-serif;
+}
+
+.movie-year {
+    color: var(--site-description-color);
+}
+
+.movie-rating {
+    color: var(--site-movie-rating-color);
+}
+
+.add-to-fav-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    width: 36px;
+    height: 36px;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 1);
+    color: var(--site-heading);
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+
+}
+
+.movie-card:hover .add-to-fav-btn,
+.add-to-fav-btn:focus-visible {
+    opacity: 1;
+}
+
+.hidden {
+    display: none !important;
+}
