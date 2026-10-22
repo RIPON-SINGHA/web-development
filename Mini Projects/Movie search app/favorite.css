@@ -1,0 +1,110 @@
+.empty-favorite-movies-section {
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-fav-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.fav-icon {
+    height: 100px;
+    width: 100px;
+    background-color: var(--site-input-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5rem;
+    border-radius: 50%;
+    color: var(--site-button-color)
+}
+
+.no-fav-sub-heading {
+    font-family: sans-serif;
+    color: var(--site-description-color)
+}
+
+.return-home-buttom {
+    cursor: pointer;
+    padding: 15px 20px;
+    font-size: 1rem;
+    background-color: var(--site-button-color);
+    color: var(--site-font-on-light-bg);
+    font-weight: 700;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+}
+
+.return-home-buttom:hover {
+    background-color: #8b6d0e;
+}
+
+.favorite-movies-section {
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.fav-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.fav-header-text {
+    align-self: center;
+    font-size: 2rem;
+}
+
+.sub-content-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-fav-movie {
+    padding: 20px 20px;
+    width: 600px;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    background: var(--site-input-bg);
+    margin-top: 10px;
+}
+
+#favorite-movies {
+    width: 100%;
+    overflow-x: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    list-style: none;
+    overflow-y: hidden;
+}
+
+#favorite-movies .movie-card {
+    height: auto;
+    width: 448px;
+}
+
+#favorite-movies .poster-container {
+    aspect-ratio: 2 / 3;
+    flex: none
+}
