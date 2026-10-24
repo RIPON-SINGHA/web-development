@@ -14,6 +14,7 @@
     --site-movie-rating-color: #8b6d0e;
     --site-button-color: #eab308;
     --site-input-bg: #27272a;
+    --site-no-pic-bg: #151618;
     --site-font-on-dark-bg: #d9d9da;
     --site-font-on-light-bg: black;
     --site-font-body: Georgia, 'Times New Roman', serif;
@@ -85,6 +86,7 @@ body {
     min-height: 0;
     overflow: hidden;
     border-radius: 12px;
+    background-color: var(--site-no-pic-bg);
 }
 
 /* the link wrapper has to be a block, or the image's 100% height doesn't work */
