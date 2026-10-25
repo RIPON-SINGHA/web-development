@@ -133,9 +133,31 @@
     background-color: var(--site-button-color);
     color: var(--site-font-on-light-bg);
     cursor: pointer;
+    font-weight: 500;
 }
 
 .submit-search:hover {
+    background-color: #8b6d0e;
+}
+
+.search-type-btns-container {
+    align-self: flex-start;
+    position: relative;
+    bottom: 20px;
+}
+
+.search-type-btn {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    background-color: var(--site-button-color);
+    color: var(--site-font-on-light-bg);
+    font-weight: 500;
+}
+
+.selected-type {
     background-color: #8b6d0e;
 }
 
@@ -275,6 +297,6 @@
 #search-results {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 26px;
     list-style: none;
 }
