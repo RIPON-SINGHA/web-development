@@ -154,3 +154,21 @@ body {
 .hidden {
     display: none !important;
 }
+
+.full-opacity {
+    opacity: 1;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    padding: 30px;
+    font-family: sans-serif;
+    color: var(--site-description-color)
+}
+
+.tmdb-link {
+    margin-left: 10px;
+}
