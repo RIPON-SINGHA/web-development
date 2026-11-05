@@ -3,31 +3,20 @@ import { useState } from 'react'
 
 export default function Game() {
 
-    const [turn, setTurn] = useState("X")
     const [history, setHistory] = useState([Array(9).fill(null)])
-    const currentSquares = history[history.length - 1]
     const [currentMove, setCurrentMove] = useState(0)
+    const currentSquares = history[currentMove]
+    const turn = currentMove % 2 === 0 ? "X" : "O"
 
     function handlePlay(nextSquare) {
-        setHistory([...history, nextSquare])
+        const nextHistory = [...history.slice(0, currentMove + 1), nextSquare]
+        setHistory(nextHistory)
+        setCurrentMove(nextHistory.length - 1)
 
-        if(turn === "X") {
-            setTurn("O")
-        } else {
-            setTurn("X")
-        }
     }
 
     function jumpTo(move) {
         setCurrentMove(move)
-
-        if(currentMove === 0) {
-            setTurn("X")
-        } else if (currentMove % 2 === 0){
-            setTurn("O")
-        } else {
-            setTurn("X")
-        }
     }
 
     const moves = history.map((square, move) => {
