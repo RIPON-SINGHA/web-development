@@ -7,6 +7,12 @@
     margin: 0px;
 }
 .board-row {
+    margin-bottom: 3px;
     min-height: 50px;
     display: flex;
+    gap: 3px;
+}
+
+.square {
+    font-size: 1.2rem;
 }
