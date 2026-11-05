@@ -1,5 +1,7 @@
 import Board from './Board.jsx'
+import './calculateWinner.js'
 import { useState } from 'react'
+import { calculateWinner } from './calculateWinner.js'
 
 export default function Game() {
 
@@ -7,6 +9,7 @@ export default function Game() {
     const [currentMove, setCurrentMove] = useState(0)
     const currentSquares = history[currentMove]
     const turn = currentMove % 2 === 0 ? "X" : "O"
+    const winner = calculateWinner(currentSquares)
 
     function handlePlay(nextSquare) {
         const nextHistory = [...history.slice(0, currentMove + 1), nextSquare]
@@ -31,7 +34,7 @@ export default function Game() {
         return (
             
             <li key={move}>
-                <button onClick={() => jumpTo(move)}>{description}</button>      
+                <button onClick={() => jumpTo(move)} disabled={winner !== null}>{description}</button>      
             </li>
         )
     })

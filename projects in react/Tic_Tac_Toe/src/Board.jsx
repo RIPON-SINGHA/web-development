@@ -1,4 +1,6 @@
 import './board.css'
+import './calculateWinner.js'
+import { calculateWinner } from './calculateWinner.js'
 
 function Square({value, onSquareClick}) {
     return (
@@ -67,25 +69,25 @@ function Board ({turn, squares, onPlay}) {
 export default Board
 
 
-function calculateWinner(squares) {
-    const winCond = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6]
-    ]
+// function calculateWinner(squares) {
+//     const winCond = [
+//         [0, 1, 2],
+//         [3, 4, 5],
+//         [6, 7, 8],
+//         [0, 3, 6],
+//         [1, 4, 7],
+//         [2, 5, 8],
+//         [0, 4, 8],
+//         [2, 4, 6]
+//     ]
 
-    for (let i = 0; i < winCond.length; i++) {
-        const [a, b, c] = winCond[i]
+//     for (let i = 0; i < winCond.length; i++) {
+//         const [a, b, c] = winCond[i]
 
-        if(squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-            return squares[a]
-        }
-    }
-    return null
+//         if(squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+//             return squares[a]
+//         }
+//     }
+//     return null
     
-}
+// }
