@@ -9,8 +9,8 @@ The goal of this repository is not just to store code, but to track real progres
 ## Current Progress
 - ✅ HTML
 - ✅ CSS
-- 🔄 JavaScript Basics
-- ⏳ React
+- ✅ JavaScript Basics (partially)
+- 🔄 React + Rest of the JS
 - ⏳ Backend Development
 - ⏳ Full Stack Projects
 
