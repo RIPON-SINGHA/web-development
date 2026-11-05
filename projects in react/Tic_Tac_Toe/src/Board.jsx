@@ -1,4 +1,3 @@
-import { useState } from "react"
 import './board.css'
 
 function Square({value, onSquareClick}) {
@@ -7,27 +6,22 @@ function Square({value, onSquareClick}) {
     )
 }
 
-function Board () {
-
-    const [squares, setSquares] = useState(Array(9).fill(null))
-    const [turn, setTurn] = useState("X")
+function Board ({turn, squares, onPlay}) {
 
     function handleClick(i) {
         if (squares[i] || calculateWinner(squares)) {
             return
         }
 
-        const newSquare = squares.slice()
+        const nextSquare = squares.slice()
 
         if(turn === "X" ) {
-            newSquare[i] = "X"
-            setTurn("O")
+            nextSquare[i] = "X"
         } else {
-            newSquare[i] = "O"
-            setTurn("X")
+            nextSquare[i] = "O"
         }
 
-        setSquares(newSquare)
+        onPlay(nextSquare)
     }
 
     const winner = calculateWinner(squares)
@@ -83,10 +77,9 @@ function calculateWinner(squares) {
         const [a, b, c] = winCond[i]
 
         if(squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-            return squares[i]
+            return squares[a]
         }
     }
-
     return null
     
 }
