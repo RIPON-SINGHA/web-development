@@ -1,0 +1,13 @@
+.square {
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+}
+.board-row {
+    min-height: 50px;
+    display: flex;
+
+}
